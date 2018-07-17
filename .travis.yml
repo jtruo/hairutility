@@ -1,30 +1,25 @@
 sudo: required
 language: python
 services:
-  - docker
+- docker
 python:
-  - "3.6"
+- '3.6'
 before_script:
-  - docker-compose build
+- docker-compose build
 script:
-  - docker-compose run --rm web bash -c "flake8 . &&
-                                         python wait_for_postgres.py &&
-                                         ./manage.py test"
-
+- docker-compose run --rm web bash -c "flake8 . && python wait_for_postgres.py &&
+  ./manage.py test"
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
-    docker tag web registry.heroku.com/hairutility-prod/web;
-    docker push registry.heroku.com/hairutility-prod/web;
-    fi
-  - if [ "$TRAVIS_BRANCH" == "qa" ]; then
-    docker login --username=_ --password="$HEROKU_AUTH_TOKEN" registry.heroku.com;
-    docker tag web registry.heroku.com/hairutility-qa/web;
-    docker push registry.heroku.com/hairutility-qa/web;
-    fi
-
+- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login --username=_ --password="$HEROKU_AUTH_TOKEN"
+  registry.heroku.com; docker tag web registry.heroku.com/hairutility-prod/web; docker
+  push registry.heroku.com/hairutility-prod/web; fi
+- if [ "$TRAVIS_BRANCH" == "qa" ]; then docker login --username=_ --password="$HEROKU_AUTH_TOKEN"
+  registry.heroku.com; docker tag web registry.heroku.com/hairutility-qa/web; docker
+  push registry.heroku.com/hairutility-qa/web; fi
 notifications:
   email: false
-
 cache:
   pip: true
+env:
+  global:
+    secure: ReSr9ECc0ROeYOgshACqjr3JAA+EHDDWTOlqlXjXv+gGjZmKPEyHS5O0Fx50dvBWp6wi+SeXgPmehZ8VW61km3lGRT5wT7Ok1m4wUmTOU1q/YEAp5I8m4bgFtHUW+bNS2WXwnpCYJni3GqvFlzKf/IPAOHzbf6IEW0SZOLnOOYpsXITh88K53DDl374aOR3LYnnbYRiSDfpl4BGxlGTPKu1BmFKYnGQcKSu6BWpSblxQGylBSt2xlP0rMrxpDn0y5tEn66lsed5eGcWKFkOPwEZt7nBGs6FHO6bXzEHVNaTENNmBSj0OhC1Fu/DRs9spyRTC20p4ikU767ke01GVIwbeF/igIbsoSRw4S5i+Kt051CAaegf6IE7CGE5xR8Z6VcEyr+UWGDm1XfVNN1BvrKTkqn8qFdXtHUlih2ulTG1iDIegQP0M2dFaSXtxbVObmii1oVCwkvqXLLMe5xhnpZdoCxmMf9yKzc7CLyV7kgDqW1Z8mE17X2idLzh3zTHNBhhxorElAApVwYwP4/H1G+NJxLK2qRWYQlHX+6Mf5Vc9DbE17xlneWA7ZhUFVOgo+CSc99omGmypjXgb3V3gnI1XOiZIEq1lCxB2ZgEEeYekwDzuiqMpdhsvSPd81VaCHioC4xByKsy39cY2FXuaytof/ZIUOOzVI6unne5NJfQ=
