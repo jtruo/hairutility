@@ -3,6 +3,8 @@ version: '2'
 services:
   postgres:
     image: postgres:10
+    ports:
+      - "5432:5432"
   web:
     restart: always
     environment:
