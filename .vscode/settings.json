@@ -1,0 +1,18 @@
+{
+    "python.linting.pep8Enabled": true,
+    "python.linting.pep8Args": [
+        "--ignore=E301,E501,E266 "
+    ],
+    "python.linting.pylintArgs": [
+        "--load-plugins",
+        "pylint_django"
+    ],
+    "python.linting.pylintEnabled": true,
+
+    "[python]": {
+        "editor.formatOnSave": true
+    },
+    
+   "editor.minimap.enabled": false,
+
+}
