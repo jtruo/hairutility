@@ -14,7 +14,8 @@ after_success:
   registry.heroku.com; docker tag web registry.heroku.com/hairutility-prod/web; docker
   push registry.heroku.com/hairutility-prod/web; fi
 - if [ "$TRAVIS_BRANCH" == "qa" ]; then docker login --username=_ --password="$HEROKU_AUTH_TOKEN"
-  registry.heroku.com; docker tag web registry.heroku.com/hairutility-qa/web; docker
+  registry.heroku.com; docker tag postgres registry.heroku.com/hairutility-qa/postgres; docker
+  push registry.heroku.com/hairutility-qa/postgres; docker tag web registry.heroku.com/hairutility-qa/web; docker
   push registry.heroku.com/hairutility-qa/web; fi
 notifications:
   email: false
