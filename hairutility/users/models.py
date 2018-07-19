@@ -1,22 +1,133 @@
 import uuid
+import secrets
+import string
 from django.db import models
 from django.conf import settings
 from django.dispatch import receiver
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
+from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
+from taggit.managers import TaggableManager
+
+
+class UserManager(BaseUserManager):
+
+    def create_user(self, email, password=None, is_stylist=False):
+        """
+        Creates and saves a user with the email as the username and a password.
+        """
+        if not email:
+            raise ValueError('Users must have an email address')
+
+        user = self.model(
+            email=self.normalize_email(email),
+
+        )
+        user.is_stylist = is_stylist
+
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    # Could have create_stylist_user
+
+    def create_superuser(self, email, password, is_stylist=bool):
+        """
+        Creates and saves a superuser
+        """
+        user = self.create_user(
+            email,
+            password=password,
+
+        )
+        user.is_stylist = True
+        user.is_admin = True
+        user.save(using=self._db)
+        return user
+
+
+phone_regex = RegexValidator(regex=r'^\+?\d{9,15}$', message="Please use a number in the format 000-000-0000")
 
 
 @python_2_unicode_compatible
-class User(AbstractUser):
+class User(AbstractBaseUser):
+
+    email = models.EmailField(max_length=255, unique=True)
+    first_name = models.CharField(blank=True, max_length=70)
+    last_name = models.CharField(blank=True, max_length=70)
+    phone_number = models.CharField(blank=True, validators=[phone_regex], max_length=15)
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    def __str__(self):
-        return self.username
+    USERNAME_FIELD = 'email'
+
+    is_admin = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_stylist = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # All admins are staff
+        return self.is_admin
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+class CompanyProfile(models.Model):
+
+    company_name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+
+
+class HairProfile(models.Model):
+
+    user = models.ForeignKey(User, related_name='hair_profiles', blank=True,
+                             on_delete=models.CASCADE, editable=False)
+    creator = models.CharField(max_length=100, default="")
+    hairstyle_name = models.CharField(max_length=75, default="")
+    first_image_url = models.URLField(max_length=300, default="")
+    second_image_url = models.URLField(max_length=300, default="")
+    third_image_url = models.URLField(max_length=300, default="")
+    fourth_image_url = models.URLField(max_length=300, default="")
+    profile_description = models.CharField(max_length=300, default="")
+    access_code = models.CharField(max_length=5, default="")
+    created = models.DateTimeField(default=timezone.now, blank=True)
+    is_displayable = models.BooleanField(default=False)
+    is_approved = models.BooleanField(default=False)
+
+    tags = TaggableManager(blank=True)
+
+    def save(self, *args, **kwargs):
+
+        if not self.id:
+            self.created = timezone.now()
+
+        if not self.creator:
+            self.creator = "{} {}".format(self.user.first_name, self.user.last_name)
+
+        self.access_code = ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(5))
+        #     Problem is now they are stored in db
+
+        return super(HairProfile, self).save(*args, **kwargs)

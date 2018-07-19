@@ -16,11 +16,13 @@ class Common(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
 
-
         # Third party apps
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
+        'nested_admin',       # nesting user profiles in admin
+        'taggit',
+        'taggit_serializer',
 
         # Your apps
         'hairutility.users',

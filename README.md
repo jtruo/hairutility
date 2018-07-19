@@ -22,6 +22,7 @@ Run a command inside the docker container:
 
 ```bash
 docker-compose run --rm web [command]
+docker-compose run --rm web python3 manage.py makemigrations
 ```
 
 # Continuous Deployment

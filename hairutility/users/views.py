@@ -1,26 +1,95 @@
-from rest_framework import viewsets, mixins
-from rest_framework.permissions import AllowAny
-from .models import User
+
+from .models import User, HairProfile
 from .permissions import IsUserOrReadOnly
-from .serializers import CreateUserSerializer, UserSerializer
+from .serializers import UserSerializer, HairProfileSerializer
+from .filters import HairProfileFilter
+
+
+from rest_framework import viewsets, mixins, generics, views
+from rest_framework.permissions import AllowAny
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class UserViewSet(mixins.RetrieveModelMixin,
+                  mixins.CreateModelMixin,
                   mixins.UpdateModelMixin,
+                  mixins.ListModelMixin,
+
                   viewsets.GenericViewSet):
     """
-    Updates and retrieves user accounts
+    Creates, updates and retrives user info
     """
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsUserOrReadOnly,)
 
+    def get_queryset(self):
+        return User.objects.filter(id=self.request.user.id)
 
-class UserCreateViewSet(mixins.CreateModelMixin,
-                        viewsets.GenericViewSet):
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         self.permission_classes = [IsAdmin, ]
+    #     elif self.action == 'retrieve':
+    #         self.permission_classes = [IsUser]
+    #     return super(self.__class__, self).get_permissions()
+
+
+class HairProfileViewSet(viewsets.ModelViewSet):
+
     """
-    Creates user accounts
+    Viewset for creating, listing all of the hair profiles
     """
-    queryset = User.objects.all()
-    serializer_class = CreateUserSerializer
-    permission_classes = (AllowAny,)
+    queryset = HairProfile.objects.all()
+    serializer_class = HairProfileSerializer
+    permission_classes = (IsUserOrReadOnly,)
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = HairProfileFilter
+
+    def get_queryset(self):
+        """
+        Queryset changes based on parameters specified. If none, returns approved hair profiles
+        """
+        queryset = HairProfile.objects.all()
+
+        user = self.request.query_params.get('user', None)
+        user__email = self.request.query_params.get('user__email', None)
+        access_code = self.request.query_params.get('access_code', None)
+
+        if user__email and access_code is not None:
+            queryset = queryset.filter(user__email=user__email, access_code=access_code)
+            return queryset
+
+        if user is not None:
+            return queryset.filter(user=self.request.user)
+
+        else:
+            queryset = queryset.filter(is_approved=True)
+            return queryset
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class ObtainAuthTokenView(ObtainAuthToken):
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+
+        return Response({
+            'pk': user.id,
+            'auth_token': token.key,
+            'is_active': user.is_active,
+            'is_stylist': user.is_stylist,
+            'first_name': user.first_name,
+            'email': user.email
+
+        })
