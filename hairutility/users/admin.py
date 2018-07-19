@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from nested_admin.nested import *
+from nested_admin.nested import NestedModelAdmin, NestedStackedInline
 
 from .models import User, HairProfile
 

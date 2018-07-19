@@ -1,6 +1,5 @@
-from .models import HairProfile, User
+from .models import HairProfile
 from django_filters.rest_framework import filterset, CharFilter
-from rest_framework.filters import BaseFilterBackend
 
 
 class TagsFilter(CharFilter):

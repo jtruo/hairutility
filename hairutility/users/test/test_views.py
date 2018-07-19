@@ -1,7 +1,6 @@
 from django.urls import reverse
 from django.forms.models import model_to_dict
-from django.contrib.auth.hashers import check_password
-from nose.tools import ok_, eq_
+from nose.tools import eq_
 from rest_framework.test import APITestCase
 from rest_framework import status
 from faker import Faker
@@ -29,7 +28,7 @@ class TestUserListTestCase(APITestCase):
         response = self.client.post(self.url, self.user_data)
         eq_(response.status_code, status.HTTP_201_CREATED)
 
-        user = User.objects.get(pk=response.data.get('pk'))
+        # user = User.objects.get(pk=response.data.get('pk'))
         # eq_(user.email, self.user_data.get('email'))
         # ok_(check_password(self.user_data.get('password'), user.password))
 

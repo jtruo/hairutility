@@ -20,8 +20,17 @@ class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = HairProfile
-        fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_url', 'second_image_url', 'third_image_url',
-                  'fourth_image_url', 'profile_description', 'created', 'is_displayable', 'is_approved', 'tags', 'access_code')
+        fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_url',
+                  'second_image_url', 'third_image_url', 'fourth_image_url', 'profile_description',
+                  'created', 'is_displayable', 'is_approved', 'tags', 'access_code')
+        depth = 1
+
+
+class CompanyProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CompanyProfile
+        fields = ('address',)
         depth = 1
 
 
