@@ -73,4 +73,7 @@ git push origin master:qa && \
 git push origin master
 ```
 
+heroku container:release web --app hairutility-qa
+
+
 You're now ready to continuously ship! ✨ 💅 🛳

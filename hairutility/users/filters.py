@@ -14,7 +14,7 @@ class TagsFilter(CharFilter):
 
 class HairProfileFilter(filterset.FilterSet):
 
-    tags = TagsFilter(name="tags", lookup_expr='icontains')
+    tags = TagsFilter(field_name="tags", lookup_expr='icontains')
 
     class Meta:
 
