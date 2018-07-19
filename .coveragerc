@@ -1,7 +1,6 @@
 [run]
 branch = True
-omit = *migrations*,
-       *urls*,
+omit = *urls*,
        *test*,
        *admin*,
        ./manage.py,
