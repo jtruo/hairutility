@@ -2,11 +2,20 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from nested_admin.nested import NestedModelAdmin, NestedStackedInline
 
-from .models import User, HairProfile
+from .models import User, HairProfile, Company
 
 
 class HairProfileInline(NestedStackedInline):
     model = HairProfile
+
+
+class CompanyInline(NestedStackedInline):
+    model = Company
+
+
+class UserInline(NestedStackedInline):
+
+    model = User
 
 
 class UserAdmin(NestedModelAdmin):
@@ -43,6 +52,19 @@ class HairProfilesAdmin(NestedModelAdmin):
     list_display = ('hairstyle_name', 'first_image_url', 'profile_description')
 
 
+class CompanyAdmin(NestedModelAdmin):
+
+    inlines = [UserInline, ]
+    list_display = ('company_name', 'address', 'users')
+
+    # def get_queryset(self, request):
+    #     return super(CompanyAdmin, self).get_queryset(request).prefetch_related('users')
+
+    def users(self, obj):
+        return obj.user_set.all()
+
+
 admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 admin.site.register(HairProfile, HairProfilesAdmin)
+admin.site.register(Company, CompanyAdmin)

@@ -75,6 +75,7 @@ git push origin master
 heroku create
 heroku container:push web
 heroku container:release web --app hairutility-qa
+Or manually run heroku bash and manage.py migrate
 
 
 You're now ready to continuously ship! ✨ 💅 🛳

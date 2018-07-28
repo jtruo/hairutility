@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User, CompanyProfile, HairProfile
+from .models import User, Company, HairProfile
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 
 # Primary keys aren't created in time to save after signup
@@ -26,14 +26,6 @@ class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
         depth = 1
 
 
-class CompanyProfileSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = CompanyProfile
-        fields = ('address',)
-        depth = 1
-
-
 class UserSerializer(serializers.ModelSerializer):
 
     hair_profiles = HairProfileSerializer(many=True, required=False, read_only=True)
@@ -48,4 +40,46 @@ class UserSerializer(serializers.ModelSerializer):
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
 
+    def create(self, validated_data):
+        password = validated_data.pop('password', None)
+        instance = self.Meta.model(**validated_data)
+        if password is not None:
+            instance.set_password(password)
+        instance.save()
+        return instance
+
 # Remove pk and auth token in production
+
+
+class CompanySerializer(serializers.ModelSerializer):
+
+    user_set = UserSerializer(many=True, required=False, read_only=True)
+    # user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='user', write_only=True)
+
+    class Meta:
+        model = Company
+        fields = ('company_name', 'address', 'state', 'city', 'user_set',)
+
+
+class CompanyUpdateSerializer(serializers.ModelSerializer):
+
+    user_set = UserSerializer(many=True)
+
+    class Meta:
+        model = Company
+        fields = ('company_name', 'user_set',)
+
+    def to_internal_value(self, data):
+        self.fields['user_set'] = serializers.SlugRelatedField(
+            queryset=User.objects.all(), many=True, slug_field='email')
+        return super(CompanyUpdateSerializer, self).to_internal_value(data)
+
+    def update(self, instance, validated_data):
+        user_set = validated_data.pop('user_set', None)
+        instance = super().update(instance, validated_data)
+
+        if user_set:
+            for user in user_set:
+                instance.user_set.add(user)
+            instance.save()
+        return instance

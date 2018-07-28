@@ -1,7 +1,7 @@
 
-from .models import User, HairProfile
+from .models import User, HairProfile, Company
 from .permissions import IsUserOrReadOnly
-from .serializers import UserSerializer, HairProfileSerializer
+from .serializers import UserSerializer, HairProfileSerializer, CompanySerializer, CompanyUpdateSerializer
 from .filters import HairProfileFilter
 
 
@@ -9,6 +9,7 @@ from rest_framework import viewsets, mixins
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -71,6 +72,43 @@ class HairProfileViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class CompanyViewSet(viewsets.ModelViewSet):
+    """
+    Creates, updates and retrives company info
+    """
+
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+    permission_classes = (AllowAny,)
+
+    def perform_create(self, request, serializer):
+        serializer.save(user_set=[self.request.user])
+
+    # def get_permissions(self):
+    #     if self.action == 'list':
+    #         self.permission_classes = [IsAdmin, ]
+    #     elif self.action == 'retrieve':
+    #         self.permission_classes = [IsUser]
+    #     return super(self.__class__, self).get_permissions()
+# on post save, add the request.user to group
+
+
+class CompanyUpdateViewSet(viewsets.ModelViewSet):
+    queryset = Company.objects.all()
+    serializer_class = CompanyUpdateSerializer
+    permission_classes = (AllowAny,)
+
+    # def patch(self, request, *args, **kwargs):
+    #     serializer = self.serializer_class
+    #     new_serializer_data = list(serializer.data)
+    #     new_serializer_data.append({'user_set': request.data})
+    #     return Response(new_serializer_data)
+
+    def perform_create(self, request, serializer):
+        new_serializer_data = list(serializer.data['user_set'])
+        new_serializer_data.append(self.request.user)
 
 
 class ObtainAuthTokenView(ObtainAuthToken):

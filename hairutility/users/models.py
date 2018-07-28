@@ -13,6 +13,16 @@ from rest_framework.authtoken.models import Token
 from taggit.managers import TaggableManager
 
 
+class Company(models.Model):
+
+    company_name = models.CharField(max_length=255, unique=True)
+    address = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+
+
+# c.user_set.add(u)
+
 class UserManager(BaseUserManager):
 
     def create_user(self, email, password=None, is_stylist=False):
@@ -27,6 +37,8 @@ class UserManager(BaseUserManager):
 
         )
         user.is_stylist = is_stylist
+
+        # Token.objects.create(user=user)
 
         user.set_password(password)
         user.save(using=self._db)
@@ -48,6 +60,10 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    #    def activate_user(**activation_ramblings):
+    #         .... #Method ramblings that somehow gave us a user instance
+    #     Token.objects.create(user=user)
+
 
 phone_regex = RegexValidator(regex=r'^\+?\d{9,15}$', message="Please use a number in the format 000-000-0000")
 
@@ -67,6 +83,7 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_stylist = models.BooleanField(default=False)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
 
     objects = UserManager()
 
@@ -91,14 +108,6 @@ class User(AbstractBaseUser):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-
-
-class CompanyProfile(models.Model):
-
-    company_name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
 
 
 class HairProfile(models.Model):
