@@ -2,8 +2,6 @@ from rest_framework import serializers
 from .models import User, Company, HairProfile
 from taggit_serializer.serializers import TagListSerializerField, TaggitSerializer
 
-# Primary keys aren't created in time to save after signup
-
 
 class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
     """
@@ -53,33 +51,20 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CompanySerializer(serializers.ModelSerializer):
 
+    users = serializers.SlugRelatedField(queryset=User.objects.all(), many=True,
+                                         slug_field='email', write_only=True)
+
     user_set = UserSerializer(many=True, required=False, read_only=True)
-    # user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='user', write_only=True)
 
     class Meta:
         model = Company
-        fields = ('company_name', 'address', 'state', 'city', 'user_set',)
-
-
-class CompanyUpdateSerializer(serializers.ModelSerializer):
-
-    user_set = UserSerializer(many=True)
-
-    class Meta:
-        model = Company
-        fields = ('company_name', 'user_set',)
-
-    def to_internal_value(self, data):
-        self.fields['user_set'] = serializers.SlugRelatedField(
-            queryset=User.objects.all(), many=True, slug_field='email')
-        return super(CompanyUpdateSerializer, self).to_internal_value(data)
+        fields = ('company_name', 'address', 'state', 'city', 'user_set', 'users')
 
     def update(self, instance, validated_data):
-        user_set = validated_data.pop('user_set', None)
+        users = validated_data.pop('users', None)
         instance = super().update(instance, validated_data)
-
-        if user_set:
-            for user in user_set:
+        if users:
+            for user in users:
                 instance.user_set.add(user)
             instance.save()
         return instance
