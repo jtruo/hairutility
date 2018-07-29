@@ -55,7 +55,7 @@ class HairProfilesAdmin(NestedModelAdmin):
 class CompanyAdmin(NestedModelAdmin):
 
     inlines = [UserInline, ]
-    list_display = ('company_name', 'address', 'users')
+    list_display = ('company_name', 'address', 'users',)
 
     # def get_queryset(self, request):
     #     return super(CompanyAdmin, self).get_queryset(request).prefetch_related('users')

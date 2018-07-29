@@ -83,8 +83,12 @@ class CompanyViewSet(viewsets.ModelViewSet):
     serializer_class = CompanySerializer
     permission_classes = (AllowAny,)
 
-    def perform_create(self, request, serializer):
+    # def perform_create(self, request, serializer, *args, **kwargs):
+    def perform_create(self, serializer):
         serializer.save(user_set=[self.request.user])
+
+    # def get_queryset(self):
+    #     return queryset.filter()
 
 
 class ObtainAuthTokenView(ObtainAuthToken):

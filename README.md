@@ -23,6 +23,14 @@ Run a command inside the docker container:
 ```bash
 docker-compose run --rm web [command]
 docker-compose run --rm web python3 manage.py makemigrations
+
+docker rm 
+docker rmi postgres:10
+
+
+docker rm -f $(docker ps -a -q)
+docker rmi -f $(docker images -q)
+
 ```
 
 # Continuous Deployment

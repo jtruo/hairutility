@@ -52,13 +52,13 @@ class UserSerializer(serializers.ModelSerializer):
 class CompanySerializer(serializers.ModelSerializer):
 
     users = serializers.SlugRelatedField(queryset=User.objects.all(), many=True,
-                                         slug_field='email', write_only=True)
+                                         slug_field='email', write_only=True, required=False)
 
     user_set = UserSerializer(many=True, required=False, read_only=True)
 
     class Meta:
         model = Company
-        fields = ('company_name', 'address', 'state', 'city', 'user_set', 'users')
+        fields = ('pk', 'company_name', 'address', 'state', 'city', 'user_set', 'users')
 
     def update(self, instance, validated_data):
         users = validated_data.pop('users', None)

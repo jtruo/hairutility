@@ -15,6 +15,7 @@ from taggit.managers import TaggableManager
 
 class Company(models.Model):
 
+    company_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company_name = models.CharField(max_length=255, unique=True)
     address = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
