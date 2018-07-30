@@ -14,13 +14,14 @@ class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
     is_approved = serializers.BooleanField(read_only=True)
     creator = serializers.CharField(required=False, allow_blank=True)
     access_code = serializers.CharField(required=False, allow_blank=True, read_only=True)
+
     tags = TagListSerializerField(required=False)
 
     class Meta:
         model = HairProfile
         fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_url',
                   'second_image_url', 'third_image_url', 'fourth_image_url', 'profile_description',
-                  'created', 'is_displayable', 'is_approved', 'tags', 'access_code')
+                  'created', 'is_displayable', 'tags', 'is_approved', 'access_code')
         depth = 1
 
 

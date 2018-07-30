@@ -6,16 +6,18 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils import timezone
+from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
 from rest_framework.authtoken.models import Token
 from taggit.managers import TaggableManager
+from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
 
 
 class Company(models.Model):
 
-    company_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company_name = models.CharField(max_length=255, unique=True)
     address = models.CharField(max_length=255)
     state = models.CharField(max_length=255)
@@ -111,8 +113,19 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
+class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
+    # If you only inherit GenericUUIDTaggedItemBase, you need to define
+    # a tag field. e.g.
+    # tag = models.ForeignKey(Tag, related_name="uuid_tagged_items", on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("Tag")
+        verbose_name_plural = _("Tags")
+
+
 class HairProfile(models.Model):
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, related_name='hair_profiles', blank=True,
                              on_delete=models.CASCADE, editable=False)
     creator = models.CharField(max_length=100, default="")
@@ -127,7 +140,7 @@ class HairProfile(models.Model):
     is_displayable = models.BooleanField(default=False)
     is_approved = models.BooleanField(default=False)
 
-    tags = TaggableManager(blank=True)
+    tags = TaggableManager(blank=True, through=UUIDTaggedItem)
 
     def save(self, *args, **kwargs):
 
