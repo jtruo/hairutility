@@ -32,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('pk', 'email', 'password', 'first_name', 'last_name', 'phone_number',
-                  'is_active', 'is_stylist', 'auth_token', 'hair_profiles')
+                  'is_active', 'is_stylist', 'auth_token', 'profile_image_url', 'hair_profiles')
         read_only_fields = ('auth_token', 'pk', 'is_active')
         extra_kwargs = {'password': {'write_only': True}}
 
@@ -59,7 +59,8 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = ('pk', 'company_name', 'address', 'state', 'city', 'user_set', 'users')
+        fields = ('pk', 'company_name', 'address', 'state', 'city',
+                  'zip_code', 'phone_number', 'banner_image_url', 'user_set', 'users')
 
     def update(self, instance, validated_data):
         users = validated_data.pop('users', None)
