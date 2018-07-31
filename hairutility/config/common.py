@@ -23,6 +23,8 @@ class Common(Configuration):
         'nested_admin',       # nesting user profiles in admin
         'taggit',
         'taggit_serializer',
+        'phonenumber_field',
+        'localflavor',
 
         # Your apps
         'hairutility.users',
@@ -183,6 +185,8 @@ class Common(Configuration):
 
     # Custom user app
     AUTH_USER_MODEL = 'users.User'
+
+    PHONENUMBER_DEFAULT_REGION = "US"
 
     # Django Rest Framework
     REST_FRAMEWORK = {

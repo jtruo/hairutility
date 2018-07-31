@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 from django.core.validators import RegexValidator
 from django.db.models.signals import post_save
+from phonenumber_field.modelfields import PhoneNumberField
+from localflavor.us.models import USZipCodeField, USStateField
 from rest_framework.authtoken.models import Token
 from taggit.managers import TaggableManager
 from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
@@ -20,11 +22,12 @@ class Company(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     company_name = models.CharField(max_length=255, unique=True)
     address = models.CharField(max_length=255)
-    state = models.CharField(max_length=255)
+    state = USStateField(blank=True)
     city = models.CharField(max_length=255)
+    zip_code = USZipCodeField(blank=True)
+    phone_number = PhoneNumberField(blank=True)
+    banner_image_url = models.URLField(max_length=500, blank=True)
 
-
-# c.user_set.add(u)
 
 class UserManager(BaseUserManager):
 
@@ -77,7 +80,8 @@ class User(AbstractBaseUser):
     email = models.EmailField(max_length=255, unique=True)
     first_name = models.CharField(blank=True, max_length=70)
     last_name = models.CharField(blank=True, max_length=70)
-    phone_number = models.CharField(blank=True, validators=[phone_regex], max_length=15)
+    phone_number = PhoneNumberField(blank=True)
+    profile_image_url = models.URLField(blank=True, max_length=500)
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
