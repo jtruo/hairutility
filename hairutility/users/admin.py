@@ -9,10 +9,6 @@ class HairProfileInline(NestedStackedInline):
     model = HairProfile
 
 
-class CompanyInline(NestedStackedInline):
-    model = Company
-
-
 class UserInline(NestedStackedInline):
 
     model = User
@@ -50,6 +46,7 @@ class UserAdmin(NestedModelAdmin):
 class HairProfilesAdmin(NestedModelAdmin):
 
     list_display = ('hairstyle_name', 'first_image_url', 'profile_description')
+    list_filter = ('is_approved',)
 
 
 class CompanyAdmin(NestedModelAdmin):
