@@ -27,6 +27,13 @@ class Company(models.Model):
     zip_code = USZipCodeField(blank=True)
     phone_number = PhoneNumberField(blank=True)
     banner_image_url = models.URLField(max_length=500, blank=True)
+    created = models.DateTimeField(default=timezone.now, blank=True)
+
+    def save(self, *args, **kwargs):
+
+        self.created = timezone.now()
+
+        return super(Company, self).save(*args, **kwargs)
 
 
 class UserManager(BaseUserManager):

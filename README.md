@@ -80,7 +80,8 @@ git commit -a -m "ci(travis): add Heroku credentials" && \
 git push origin master:qa && \
 git push origin master
 ```
-heroku create
+
+heroku container:login
 heroku container:push web
 heroku container:release web --app hairutility-qa
 Or manually heroku run bash and ./manage.py migrate
