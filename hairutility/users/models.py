@@ -28,6 +28,7 @@ class Company(models.Model):
     phone_number = PhoneNumberField(blank=True)
     banner_image_url = models.URLField(max_length=500, blank=True)
     created = models.DateTimeField(default=timezone.now, blank=True)
+    bio = models.CharField(max_length=500)
 
     def save(self, *args, **kwargs):
 

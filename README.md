@@ -82,6 +82,7 @@ git push origin master
 ```
 
 heroku container:login
+<!-- Need to manually push web in order to update or update travis -->
 heroku container:push web
 heroku container:release web --app hairutility-qa
 Or manually heroku run bash and ./manage.py migrate

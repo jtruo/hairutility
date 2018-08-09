@@ -60,7 +60,7 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model = Company
         fields = ('pk', 'company_name', 'address', 'state', 'city',
-                  'zip_code', 'phone_number', 'banner_image_url', 'user_set', 'users')
+                  'zip_code', 'phone_number', 'banner_image_url', 'bio', 'user_set', 'users')
 
     def update(self, instance, validated_data):
         users = validated_data.pop('users', None)
