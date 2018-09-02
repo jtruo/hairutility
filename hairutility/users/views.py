@@ -17,7 +17,6 @@ class UserViewSet(mixins.RetrieveModelMixin,
                   mixins.CreateModelMixin,
                   mixins.UpdateModelMixin,
                   mixins.ListModelMixin,
-
                   viewsets.GenericViewSet):
     """
     Creates, updates and retrives user info
@@ -86,9 +85,6 @@ class CompanyViewSet(viewsets.ModelViewSet):
     # def perform_create(self, request, serializer, *args, **kwargs):
     def perform_create(self, serializer):
         serializer.save(user_set=[self.request.user])
-
-    # def get_queryset(self):
-    #     return queryset.filter()
 
 
 class ObtainAuthTokenView(ObtainAuthToken):

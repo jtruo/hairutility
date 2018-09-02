@@ -52,6 +52,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 class CompanySerializer(serializers.ModelSerializer):
 
+    """
+    Write to the "users" field in order to add a user to a created company
+    """
+
     users = serializers.SlugRelatedField(queryset=User.objects.all(), many=True,
                                          slug_field='email', write_only=True, required=False)
 

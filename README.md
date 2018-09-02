@@ -89,3 +89,8 @@ Or manually heroku run bash and ./manage.py migrate
 
 
 You're now ready to continuously ship! ✨ 💅 🛳
+
+Shell
+
+docker-compose run --rm web python3 manage.py shell
+from hairutility.users.models import User
