@@ -66,7 +66,8 @@ class HairProfileViewSet(viewsets.ModelViewSet):
             return queryset.filter(user=self.request.user)
 
         else:
-            queryset = queryset.filter(is_approved=True)
+            # queryset = queryset.filter(is_approved=True)
+            queryset = queryset.filter(user=self.request.user)
             return queryset
 
     def perform_create(self, serializer):
