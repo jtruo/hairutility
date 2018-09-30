@@ -11,4 +11,4 @@ class IsUserOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return obj == request.user
+        return obj.user == request.user.email
