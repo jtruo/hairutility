@@ -94,3 +94,6 @@ Shell
 
 docker-compose run --rm web python3 manage.py shell
 from hairutility.users.models import User
+
+
+Port already allocated = restart docker program

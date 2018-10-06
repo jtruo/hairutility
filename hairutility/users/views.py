@@ -1,6 +1,6 @@
 
 from .models import User, HairProfile, Company
-from .permissions import IsUserOrReadOnly
+from .permissions import IsOwnerOrReadOnly
 from .serializers import UserSerializer, HairProfileSerializer, CompanySerializer
 from .filters import HairProfileFilter
 
@@ -24,7 +24,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsUserOrReadOnly,)
+    permission_classes = (IsOwnerOrReadOnly,)
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
@@ -44,20 +44,20 @@ class HairProfileViewSet(viewsets.ModelViewSet):
     """
     queryset = HairProfile.objects.all()
     serializer_class = HairProfileSerializer
-    permission_classes = (IsUserOrReadOnly,)
+    permission_classes = (IsOwnerOrReadOnly,)
     filter_backends = (DjangoFilterBackend,)
     filter_class = HairProfileFilter
 
     def get_queryset(self):
         """
         Queryset changes based on parameters specified. If none, returns approved hair profiles
+        There are other filters in filters.py
         """
         queryset = HairProfile.objects.all()
 
         user = self.request.query_params.get('user', None)
         user__email = self.request.query_params.get('user__email', None)
         access_code = self.request.query_params.get('access_code', None)
-        list_all = self.request.query_params.get('list_all', None)
 
         if user__email and access_code is not None:
             queryset = queryset.filter(user__email=user__email, access_code=access_code)
@@ -66,11 +66,7 @@ class HairProfileViewSet(viewsets.ModelViewSet):
         if user is not None:
             return queryset.filter(user=self.request.user)
 
-        if list_all is not None:
-            return queryset.filter(is_approved=True)
-
         else:
-            # queryset = queryset.filter(is_approved=True)
             queryset = queryset.filter(user=self.request.user)
             return queryset
 
