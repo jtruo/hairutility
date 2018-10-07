@@ -4,7 +4,6 @@ from .permissions import IsOwnerOrReadOnly
 from .serializers import UserSerializer, HairProfileSerializer, CompanySerializer
 from .filters import HairProfileFilter
 
-
 from rest_framework import viewsets, mixins
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
