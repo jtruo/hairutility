@@ -8,7 +8,7 @@ from rest_framework import viewsets, mixins
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -23,17 +23,17 @@ class UserViewSet(mixins.RetrieveModelMixin,
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
 
     def get_queryset(self):
         return User.objects.filter(id=self.request.user.id)
 
-    # def get_permissions(self):
-    #     if self.action == 'list':
-    #         self.permission_classes = [IsAdmin, ]
-    #     elif self.action == 'retrieve':
-    #         self.permission_classes = [IsUser]
-    #     return super(self.__class__, self).get_permissions()
+    def get_permissions(self):
+        if self.action == 'list':
+            self.permission_classes = [IsAdminUser, ]
+        # elif self.action == 'retrieve':
+        #     self.permission_classes = [IsOwnerOrReadOnly]
+        return super(self.__class__, self).get_permissions()
 
 
 class HairProfileViewSet(viewsets.ModelViewSet):
