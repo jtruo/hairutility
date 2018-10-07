@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.forms.models import model_to_dict
-from nose.tools import eq_, ok_
+# from nose.tools import eq_, ok_
+from nose.tools import ok_
 from .factories import UserFactory
 from ..serializers import UserSerializer
 
