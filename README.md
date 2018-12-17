@@ -14,23 +14,27 @@ Django api and web. Check out the project's [documentation](http://jtruo.github.
 # Local Development
 
 Start the dev server for local development:
-```bash
+
 docker-compose up
-```
 
 Run a command inside the docker container:
 
-```bash
 docker-compose run --rm web [command]
-docker-compose run --rm web python3 manage.py makemigrations
 
-Remove all containers
+
+Do this everytime you make changes to the database/models.py:
+
+docker-compose run --rm web python3 manage.py makemigrations
+docker-compose run --rm web python3 manage.py migrate
+
+Delete all docker containers
+
 docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images -q)
+
 Remove postgres container
 docker rmi postgres:10
 
-```
 
 # Continuous Deployment
 
@@ -38,7 +42,7 @@ Deployment is automated via Travis. When builds pass on the master or qa branch,
 
 Initialize the production server:
 
-```
+
 heroku create hairutility-prod --remote prod && \
     heroku addons:create newrelic:wayne --app hairutility-prod && \
     heroku addons:create heroku-postgresql:hobby-dev --app hairutility-prod && \
@@ -49,11 +53,11 @@ heroku create hairutility-prod --remote prod && \
         DJANGO_CONFIGURATION="Production" \
         DJANGO_SETTINGS_MODULE="hairutility.config" \
         --app hairutility-prod
-```
+
 
 Initialize the qa server:
 
-```
+
 heroku create hairutility-qa --remote qa && \
     heroku addons:create newrelic:wayne --app hairutility-qa && \
     heroku addons:create heroku-postgresql:hobby-dev --app hairutility-qa && \
@@ -64,34 +68,33 @@ heroku create hairutility-qa --remote qa && \
         DJANGO_CONFIGURATION="Production" \
         DJANGO_SETTINGS_MODULE="hairutility.config" \
         --app hairutility-qa
-```
+
 
 Securely add your Heroku credentials to Travis so that it can automatically deploy your changes:
 
-```bash
+
 travis encrypt HEROKU_AUTH_TOKEN="$(heroku auth:token)" --add
-```
+
 
 Commit your changes and push to master and qa to trigger your first deploys:
 
-```bash
+Step 1:
+
 git commit -a -m "ci(travis): add Heroku credentials" && \
 git push origin master:qa && \
 git push origin master
-```
 
-
+Step: 2
 heroku container:login
-<!-- Need to manually push web in order to update or update travis -->
 heroku container:push web
 heroku container:release web --app hairutility-qa
-Or manually heroku run bash and ./manage.py migrate
 
+To make database migrations (almost everytime you change your model):
 
+heroku run bash
+./manage.py migrate
 
-Run the shell
+Run the django shell
 docker-compose run --rm web python3 manage.py shell
-from hairutility.users.models import User
 
-
-Port already allocated = restart docker application
+Port already allocated error = restart docker application
