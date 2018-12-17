@@ -98,7 +98,7 @@ class User(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_stylist = models.BooleanField(default=False)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
+    company_pk = models.ForeignKey(Company, on_delete=models.CASCADE, null=True)
 
     objects = UserManager()
 
@@ -147,6 +147,8 @@ class HairProfile(models.Model):
     third_image_url = models.URLField(max_length=300, default="")
     fourth_image_url = models.URLField(max_length=300, default="")
     profile_description = models.CharField(max_length=300, default="")
+    gender = models.CharField(max_length=5, default="")
+    length = models.CharField(max_length=6, default="")
     access_code = models.CharField(max_length=5, default="")
     created = models.DateTimeField(default=timezone.now, blank=True)
     is_displayable = models.BooleanField(default=False)

@@ -21,7 +21,7 @@ class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
         model = HairProfile
         fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_url',
                   'second_image_url', 'third_image_url', 'fourth_image_url', 'profile_description',
-                  'created', 'is_displayable', 'tags', 'is_approved', 'access_code')
+                  'created', 'is_displayable', 'gender', 'length', 'tags', 'is_approved', 'access_code')
         depth = 1
 
 
@@ -31,9 +31,9 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('pk', 'email', 'password', 'first_name', 'last_name', 'phone_number',
+        fields = ('pk', 'email', 'password', 'first_name', 'last_name', 'phone_number', 'company_pk',
                   'is_active', 'is_stylist', 'auth_token', 'profile_image_url', 'hair_profiles')
-        read_only_fields = ('auth_token', 'pk', 'is_active')
+        read_only_fields = ('auth_token', 'pk', 'company_pk', 'is_active')
         extra_kwargs = {'password': {'write_only': True}}
 
     def patch(self, request, *args, **kwargs):
@@ -46,7 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
-
+# Add company.companyname to stylist profile
 # Remove pk and auth token in production
 
 

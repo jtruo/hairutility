@@ -24,12 +24,11 @@ Run a command inside the docker container:
 docker-compose run --rm web [command]
 docker-compose run --rm web python3 manage.py makemigrations
 
-docker rm 
-docker rmi postgres:10
-
-
+Remove all containers
 docker rm -f $(docker ps -a -q)
 docker rmi -f $(docker images -q)
+Remove postgres container
+docker rmi postgres:10
 
 ```
 
@@ -81,6 +80,7 @@ git push origin master:qa && \
 git push origin master
 ```
 
+
 heroku container:login
 <!-- Need to manually push web in order to update or update travis -->
 heroku container:push web
@@ -88,12 +88,10 @@ heroku container:release web --app hairutility-qa
 Or manually heroku run bash and ./manage.py migrate
 
 
-You're now ready to continuously ship! ✨ 💅 🛳
 
-Shell
-
+Run the shell
 docker-compose run --rm web python3 manage.py shell
 from hairutility.users.models import User
 
 
-Port already allocated = restart docker program
+Port already allocated = restart docker application

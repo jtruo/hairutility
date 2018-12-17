@@ -10,6 +10,7 @@ class TagsFilter(CharFilter):
             qs = qs.filter(tags__name__in=tags).distinct()
 
         return qs
+# Would it be better to split gender and hair length into separate fields, and then tags separately queried?
 
 
 class HairProfileFilter(filterset.FilterSet):
@@ -25,7 +26,9 @@ class HairProfileFilter(filterset.FilterSet):
             'is_displayable': ['exact'],
             'is_approved': ['exact'],
             'user__email': ['exact'],
-            'access_code': ['exact']
+            'access_code': ['exact'],
+            'gender': ['exact'],
+            'length': ['exact'],
 
 
         }
