@@ -30,5 +30,4 @@ class HairProfileFilter(filterset.FilterSet):
             'gender': ['exact'],
             'length': ['exact'],
 
-
         }
