@@ -21,13 +21,14 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
         'nested_admin',       # nesting user profiles in admin
-        'taggit',
-        'taggit_serializer',
-        'phonenumber_field',
-        'localflavor',
+        'taggit',            # for tagging hair profiles
+        'taggit_serializer',  # for serializing tags into hair profiles
+        'phonenumber_field',  # handling phone numbers
+        'localflavor',  # for localization/addresses
 
-        # Your apps
+        # Our apps
         'hairutility.users',
+        'hairutility.webapp',
 
     )
 
@@ -76,7 +77,10 @@ class Common(Configuration):
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/2.0/howto/static-files/
     STATIC_ROOT = os.path.normpath(join(os.path.dirname(BASE_DIR), 'static'))
-    STATICFILES_DIRS = []
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, "webapp", "static"),
+        os.path.join(BASE_DIR, "webapp", "templates")
+    ]
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',

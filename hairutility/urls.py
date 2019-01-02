@@ -7,6 +7,7 @@ from rest_framework.routers import DefaultRouter
 
 
 from .users.views import UserViewSet, HairProfileViewSet, CompanyViewSet, ObtainAuthTokenView
+from .webapp.views import HomePageView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -24,7 +25,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     # Web views
-    # path('', HomePageView.as_view(), name='home'),
+    path('', HomePageView.as_view(), name='home'),
     # path('test/', TestPageView.as_view(), name='test'),
     # path('profile/', UserProfileView.as_view(), name='usr_profile')
 
