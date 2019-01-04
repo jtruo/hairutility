@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block index %}
     <!-- Hero Slider -->
     <section class="section-wrap nopadding">
@@ -13,7 +12,7 @@
                 <div class="img-holder img-1"></div>
                 <div class="hero-holder text-center right-align">
                   <div class="hero-lines">
-                    <h1 class="hero-heading white">Collection 2017</h1>
+                    <h1 class="hero-heading white">Collection 2019</h1>
                     <h4 class="hero-subheading white uppercase">HOT AND FRESH TRENDS OF THIS YEAR</h4>
                   </div>
                   <a href="#" class="btn btn-lg btn-white"><span>Shop Now</span></a>
@@ -65,7 +64,7 @@
 
         <div class="row heading-row">
           <div class="col-md-12 text-center">
-            <h2 class="heading uppercase"><small>New Arrivals</small></h2>
+            <h2 class="heading uppercase"><small>TRENDING</small></h2>
           </div>
         </div>
 
@@ -75,11 +74,11 @@
             <div class="product-item">
               <div class="product-img">
                 <a href="#">
-                  <img src="img/shop/shop_item_1.jpg" alt="">
-                  <img src="img/shop/shop_item_1_back.jpg" alt="" class="back-img">
+                  <img src="{% static 'img/hairstyles/thumbnail_kasual.png' %}" alt="">
+                  {% comment %} <img src="{% static 'img/shop/shop_item_1_back.jpg' %}" alt="" class="back-img"> {% endcomment %}
                 </a>
                 <div class="product-label">
-                  <span class="sale">sale</span>
+                  <span class="sale">Perm</span>
                 </div>
                 <div class="product-actions">
                   <a href="#" class="product-add-to-compare" data-toggle="tooltip" data-placement="bottom" title="Add to compare">
@@ -93,16 +92,16 @@
               </div>
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="shop-single-product.html">Night Party Dress</a>
+                  <a class="product-title" href="shop-single-product.html">Undercut</a>
                 </h3>
-                <span class="price">
+                {% comment %} <span class="price">
                   <del>
                     <span>$388.00</span>
                   </del>
                   <ins>
                     <span class="ammount">$159.99</span>
                   </ins>
-                </span>
+                </span> {% endcomment %}
               </div>
             </div>
           </div>
@@ -126,13 +125,13 @@
               </div>
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="shop-single-product.html">Elegant White Dress</a>
+                  <a class="product-title" href="shop-single-product.html">Wedding</a>
                 </h3>
-                <span class="price">
+                {% comment %} <span class="price">
                   <ins>
                     <span class="ammount">$219.00</span>
                   </ins>
-                </span>
+                </span> {% endcomment %}
               </div>                          
             </div>
           </div>
@@ -141,14 +140,10 @@
             <div class="product-item">
               <div class="product-img">
                 <a href="#">
-                  <img src="img/shop/shop_item_3.jpg" alt="">
-                  <img src="img/shop/shop_item_3_back.jpg" alt="" class="back-img">
+                  <img src="{% static 'img/hairstyles/unsplash_aa.png' %}" alt="">
+                  {% comment %} <img src="img/shop/shop_item_3_back.jpg" alt="" class="back-img"> {% endcomment %}
                 </a>
-                <span class="sold-out valign">out of stock</span>
                 <div class="product-actions">
-                  <a href="#" class="product-add-to-compare" data-toggle="tooltip" data-placement="bottom" title="Add to compare">
-                    <i class="fa fa-exchange"></i>
-                  </a>
                   <a href="#" class="product-add-to-wishlist" data-toggle="tooltip" data-placement="bottom" title="Add to wishlist">
                     <i class="fa fa-heart"></i>
                   </a>                    
@@ -157,13 +152,13 @@
               </div>
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="shop-single-product.html">Long Black Dress</a>
+                  <a class="product-title" href="shop-single-product.html">Curly</a>
                 </h3>
-                <span class="price">
+                {% comment %} <span class="price">
                   <ins>
                     <span class="ammount">$99.00</span>
                   </ins>
-                </span>
+                </span> {% endcomment %}
               </div>                        
             </div>
           </div>
@@ -187,13 +182,13 @@
               </div>
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="shop-single-product.html">Sexy Pink Dress</a>
+                  <a class="product-title" href="shop-single-product.html">Side Part Fade</a>
                 </h3>
-                <span class="price">
+                {% comment %} <span class="price">
                   <ins>
                     <span class="ammount">$120.00</span>
                   </ins>
-                </span>
+                </span> {% endcomment %}
               </div>                        
             </div>
           </div>            

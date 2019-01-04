@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% comment %} Base is the base for the header and footer of the entire website.
+ The base is based off of the original index template page. {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,8 @@
   <meta name="description" content="">
   
   <!-- Google Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700%7CRaleway:300,400,700%7CPlayfair+Display:700' rel='stylesheet'>
+  {% comment %} <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700%7CRaleway:300,400,700%7CPlayfair+Display:700' rel='stylesheet'> {% endcomment %}
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
 
   <!-- Css -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
@@ -135,7 +138,7 @@
                   <div class="logo-container">
                     <div class="logo-wrap text-center">
                       <a href="index.html">
-                        <img class="logo" src="img/logo_dark.png" alt="logo">
+                        <img class="logo" src="{% static 'img/hairutility_logo.png' %}" alt="logo">
                       </a>
                     </div>
                   </div>
@@ -207,7 +210,7 @@
                     <div class="menu-cart-amount right">
                       <span>
                         Cart /
-                        <a href="#"> $1299.50</a>
+                        <a href="#">$0</a>
                       </span>
                     </div>
                   </div> <!-- end cart -->
@@ -234,7 +237,7 @@
                     </li>
 
                     <li class="dropdown">
-                      <a href="#">Pages</a>
+                      <a href="#">ABOUT US</a>
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
                         <li><a href="about-us.html">About Us</a></li>
@@ -246,7 +249,7 @@
                     </li>
 
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories</a>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">HAIRSTYLES</a>
                       <ul class="dropdown-menu megamenu">
                         <li>
                           <div class="megamenu-wrap">
@@ -320,7 +323,7 @@
                     </li>
 
                     <li class="dropdown">
-                      <a href="#">Elements</a>
+                      <a href="#">SALONS</a>
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
                         <li><a href="shortcodes.html">Shortcodes</a></li>
@@ -354,9 +357,8 @@
 
 {% block index %}
 {% endblock %}
-
-
-
+{% block error404 %}
+{% endblock %}
 
 
         <!-- Footer Type-1 -->
@@ -406,17 +408,17 @@
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="widget">
-                <h5 class="widget-title uppercase">about us</h5>
-                <p class="mb-0">A-ha Shop is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme is easy than you can imagine.</p>
+                <h5 class="widget-title uppercase">About Us</h5>
+                <p class="mb-0">Hairutility is a website and mobile app for helping people receive better haircuts. Use our website and app to find detailed information on haircuts and communicate better your stylist. </p>
               </div>
             </div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="widget footer-get-in-touch">
                 <h5 class="widget-title uppercase">Contact</h5>
-                <address class="footer-address"><span>Address:</span> Philippines, PO Box 620067, Talay st. 66, A-ha inc.</address>
-                <p>Phone: <a href="tel:+1-888-1554-456-123">+ 1-888-1554-456-123</a></p>
-                <p>Email: <a href="mailto:themesupport@gmail.com">themesupport@gmail.com</a></p>
+                <address class="footer-address"><span>Address:</span> PlaceHolder </address>
+                <p>Phone: <a href="tel:+1-888-1554-456-123">+ x-xxx-xxx-xxxx</a></p>
+                <p>Email: <a href="mailto:jtruong@@hairutility.com">jtruong@hairutility.com</a></p>
                 <div class="social-icons rounded mt-20">
                   <a href="#"><i class="fa fa-twitter"></i></a>
                   <a href="#"><i class="fa fa-facebook"></i></a>

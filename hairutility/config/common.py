@@ -36,17 +36,23 @@ class Common(Configuration):
     MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
-        'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.middleware.common.CommonMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'hairutility.middleware.BasicAuthMiddleware',
+
+
     )
 
     ALLOWED_HOSTS = ["*"]
     ROOT_URLCONF = 'hairutility.urls'
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'hairutility.wsgi.application'
+
+    BASICAUTH_USERNAME = 'user'
+    BASICAUTH_PASSWORD = 'pass'
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -64,11 +70,12 @@ class Common(Configuration):
     }
 
     # General
-    APPEND_SLASH = False
+    APPEND_SLASH = True
     TIME_ZONE = 'UTC'
     LANGUAGE_CODE = 'en-us'
     # If you set this to False, Django will make some optimizations so as not
     # to load the internationalization machinery.
+
     USE_I18N = False
     USE_L10N = True
     USE_TZ = True

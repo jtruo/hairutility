@@ -2,9 +2,7 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.contrib import admin
-
 from rest_framework.routers import DefaultRouter
-
 
 from .users.views import UserViewSet, HairProfileViewSet, CompanyViewSet, ObtainAuthTokenView
 from .webapp.views import HomePageView
