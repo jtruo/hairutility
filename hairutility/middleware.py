@@ -21,7 +21,7 @@ class BasicAuthMiddleware(object):
     def _unauthed(self):
         AUTH_TEMPLATE = """ <html> <title>Authentication Required</title> <body> Sorry, we're not ready for you yet. </body> </html> """
         response = HttpResponse(AUTH_TEMPLATE, content_type="text/html")
-        response['WWW-Authenticate'] = 'Basic realm="Development"'
+        response['WWW-Authenticate'] = 'Basic realm="This site is currently open to beta-testers only"'
         response.status_code = 401
         return response
 
