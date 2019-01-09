@@ -51,8 +51,8 @@ class Common(Configuration):
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'hairutility.wsgi.application'
 
-    BASICAUTH_USERNAME = 'user'
-    BASICAUTH_PASSWORD = 'pass'
+    BASICAUTH_USERNAME = 'beta'
+    BASICAUTH_PASSWORD = 'password126'
 
     # Email
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

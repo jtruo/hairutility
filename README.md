@@ -40,6 +40,15 @@ docker rmi postgres:10
 
 Deployment is automated via Travis. When builds pass on the master or qa branch, Travis will deploy that branch to Heroku. Follow these steps to enable this feature.
 
+
+AWS ECS
+
+View push commands in repo
+Run task
+
+
+
+
 Initialize the production server:
 
 
@@ -49,7 +58,7 @@ heroku create hairutility-prod --remote prod && \
     heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
         DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
         DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-prod" \
+        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-images-prod" \
         DJANGO_CONFIGURATION="Production" \
         DJANGO_SETTINGS_MODULE="hairutility.config" \
         --app hairutility-prod
