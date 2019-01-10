@@ -128,7 +128,7 @@
                   <!-- Logo -->
                   <div class="logo-container">
                     <div class="logo-wrap text-center">
-                      <a href="index.html">
+                      <a href="{% url 'home' %}">
                         <img class="logo" src="{% static 'img/hairutility_logo.png' %}" alt="logo">
                       </a>
                     </div>
@@ -224,18 +224,16 @@
                     </li>
 
                     <li class="dropdown">
-                      <a href="index.html">Home</a>
+                      <a href="{% url 'home'%}">Home</a>
                     </li>
 
                     <li class="dropdown">
                       <a href="#">ABOUT US</a>
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
-                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="{% url 'about-us' %}">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="login.html">Login</a></li>
                         <li><a href="faq.html">F.A.Q</a></li>
-                        <li><a href="404.html">404</a></li>
                       </ul>
                     </li>
 
@@ -265,27 +263,6 @@
                                   <li><a href="#">Sandals</a></li>
                                 </ul>
                               </div>
-
-                              <div class="col-md-3 megamenu-item">
-                                <h6>Accessories</h6>
-                                <ul class="menu-list">
-                                  <li><a href="#">Wallets</a></li>
-                                  <li><a href="#">Watches</a></li>
-                                  <li><a href="#">Belts</a></li>
-                                  <li><a href="#">Scarfs</a></li>
-                                </ul>
-                              </div>
-
-                              <div class="col-md-3 megamenu-item">
-                                <h6>Bags</h6>
-                                <ul class="menu-list">
-                                  <li><a href="#">Leather</a></li>
-                                  <li><a href="#">Sports</a></li>
-                                  <li><a href="#">Street Style</a></li>
-                                  <li><a href="#">Creative</a></li>
-                                </ul>
-                              </div>
-
                             </div>
                           </div>
                         </li>
@@ -301,7 +278,7 @@
                       </ul>
                     </li>
 
-                    <li class="dropdown">
+                    {% comment %} <li class="dropdown">
                       <a href="#">Shop</a>
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
@@ -311,7 +288,7 @@
                         <li><a href="shop-cart.html">Cart</a></li>
                         <li><a href="shop-checkout.html">Checkout</a></li>
                       </ul>
-                    </li>
+                    </li> {% endcomment %}
 
                     <li class="dropdown">
                       <a href="#">SALONS</a>
@@ -345,6 +322,10 @@
 
 {% block index %}
 {% endblock %}
+
+{% block about-us %}
+{% endblock %}
+
 {% block error404 %}
 {% endblock %}
 
