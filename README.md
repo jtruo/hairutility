@@ -107,9 +107,3 @@ Run the django shell
 docker-compose run --rm web python3 manage.py shell
 
 Port already allocated error = restart docker application
-
-PostgreSQL/RDS
-
-Connect by:
-
-psql --host=hairutility-postgresql.cwv7chbb2fjl.us-east-2.rds.amazonaws.com --port=5432 --username=jtruo --password --dbname=postgres
