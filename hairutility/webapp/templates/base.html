@@ -127,14 +127,14 @@
 
                   <!-- Logo -->
                   <div class="logo-container">
-                    <div class="logo-wrap text-center">
+                    <div class="logo-wrap center">
                       <a href="{% url 'home' %}">
                         <img class="logo" src="{% static 'img/hairutility_logo.png' %}" alt="logo">
                       </a>
                     </div>
                   </div>
 
-                  <!-- Cart -->
+                  {% comment %} <!-- Cart -->
                   <div class="nav-cart-wrap hidden-sm hidden-xs">
                     <div class="nav-cart right">
                       <div class="nav-cart-outer">
@@ -204,7 +204,7 @@
                         <a href="#">$0</a>
                       </span>
                     </div>
-                  </div> <!-- end cart -->
+                  </div> <!-- end cart --> {% endcomment %}
 
                 </div>
               </div> <!-- end header wrap -->

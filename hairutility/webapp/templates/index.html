@@ -77,9 +77,9 @@
                   <img src="{% static 'img/hairstyles/thumbnail_kasual.png' %}" alt="">
                   {% comment %} <img src="{% static 'img/shop/shop_item_1_back.jpg' %}" alt="" class="back-img"> {% endcomment %}
                 </a>
-                <div class="product-label">
+                {% comment %} <div class="product-label">
                   <span class="sale">Perm</span>
-                </div>
+                </div> {% endcomment %}
                 <div class="product-actions">
                   <a href="#" class="product-add-to-compare" data-toggle="tooltip" data-placement="bottom" title="Add to compare">
                     <i class="fa fa-exchange"></i>
@@ -110,8 +110,8 @@
             <div class="product-item">
               <div class="product-img">
                 <a href="#">
-                  <img src="img/shop/shop_item_2.jpg" alt="">
-                  <img src="img/shop/shop_item_2_back.jpg" alt="" class="back-img">
+                  <img src="{% static 'img/hairstyles/wedding.png' %}" alt="">
+                  {% comment %} <img src="img/shop/shop_item_2_back.jpg" alt="" class="back-img"> {% endcomment %}
                 </a>
                 <div class="product-actions">
                   <a href="#" class="product-add-to-compare" data-toggle="tooltip" data-placement="bottom" title="Add to compare">
@@ -167,8 +167,8 @@
             <div class="product-item">
               <div class="product-img">
                 <a href="#">
-                  <img src="img/shop/shop_item_4.jpg" alt="">
-                  <img src="img/shop/shop_item_4_back.jpg" alt="" class="back-img">
+                  <img src="{% static 'img/hairstyles/side_part.png' %}" alt="">
+                  {% comment %} <img src="img/shop/shop_item_4_back.jpg" alt="" class="back-img"> {% endcomment %}
                 </a>
                 <div class="product-actions">
                   <a href="#" class="product-add-to-compare" data-toggle="tooltip" data-placement="bottom" title="Add to compare">
@@ -182,7 +182,7 @@
               </div>
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="shop-single-product.html">Side Part Fade</a>
+                  <a class="product-title" href="shop-single-product.html">Side Part</a>
                 </h3>
                 {% comment %} <span class="price">
                   <ins>
