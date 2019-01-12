@@ -41,8 +41,6 @@ class Common(Configuration):
         'django.middleware.common.CommonMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        # 'hairutility.middleware.BasicAuthMiddleware',
-
 
     )
 
