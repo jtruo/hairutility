@@ -109,6 +109,9 @@ class Common(Configuration):
                     'django.template.context_processors.request',
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
+
+                    # Enables template to access settings vars for cloudfront/s3
+                    'hairutility.context_processors.export_vars'
                 ],
             },
         },

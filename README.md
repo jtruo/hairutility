@@ -58,10 +58,16 @@ heroku create hairutility-prod --remote prod && \
     heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
         DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
         DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-images-prod" \
+        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-prod" \
         DJANGO_CONFIGURATION="Production" \
         DJANGO_SETTINGS_MODULE="hairutility.config" \
         --app hairutility-prod
+
+ALSO set these config vars to enable Heroku to upload other files to AWS
+        AWS_ACCESS_KEY_ID="Add your id" \
+        AWS_SECRET_ACCESS_KEY="Add your key" \
+        AWS_STORAGE_BUCKET_NAME="hairutility-prod" \
+
 
 
 Initialize the qa server:
