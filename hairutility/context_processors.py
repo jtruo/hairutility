@@ -1,7 +1,9 @@
 import os
+from django.conf import settings
 
 
 def export_vars(request):
     data = {}
-    data['S3_PREFIX'] = os.environ.DJANGO_SETTINGS_MODULE
+    data['S3_PREFIX'] = settings.S3_PREFIX
+    print(data)
     return data
