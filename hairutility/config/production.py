@@ -22,7 +22,7 @@ class Production(Common):
     AWS_DEFAULT_ACL = 'public-read'
     AWS_AUTO_CREATE_BUCKET = True
     AWS_QUERYSTRING_AUTH = False
-    S3_PREFIX = os.getenv('S3_PREFIX')
+    S3_PREFIX = os.getenv('S3_PREFIX', default='prefix')
     MEDIA_URL = f'https://s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/'
 
     Common.MIDDLEWARE = (
