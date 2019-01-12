@@ -3,5 +3,5 @@ import os
 
 def export_vars(request):
     data = {}
-    data['SETTING_TYPE'] = os.environ.DJANGO_SETTINGS_MODULE
+    data['S3_PREFIX'] = os.environ.S3_PREFIX
     return data

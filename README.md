@@ -119,3 +119,5 @@ PostgreSQL/RDS
 Connect by:
 
 psql --host=hairutility-postgresql.cwv7chbb2fjl.us-east-2.rds.amazonaws.com --port=5432 --username=jtruo --password --dbname=postgres
+
+<!-- Static files are not loading access is not allowed to s3 -->
