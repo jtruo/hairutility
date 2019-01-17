@@ -49,6 +49,7 @@ class Common(Configuration):
     SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
     WSGI_APPLICATION = 'hairutility.wsgi.application'
 
+    # Temp
     BASICAUTH_USERNAME = 'beta'
     BASICAUTH_PASSWORD = 'password126'
 

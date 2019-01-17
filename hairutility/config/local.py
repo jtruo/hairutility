@@ -19,6 +19,22 @@ class Local(Common):
         '--cover-package=hairutility'
     ]
 
+    # Temp
+
+    Common.MIDDLEWARE = (
+        'django.middleware.security.SecurityMiddleware',
+        'django.contrib.sessions.middleware.SessionMiddleware',
+        'django.middleware.csrf.CsrfViewMiddleware',
+        'django.contrib.auth.middleware.AuthenticationMiddleware',
+        'django.middleware.common.CommonMiddleware',
+        'django.contrib.messages.middleware.MessageMiddleware',
+        'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'hairutility.middleware.BasicAuthMiddleware'
+
+    )
+
+    S3_PREFIX = "prefix"
+
     # Mail
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 1025

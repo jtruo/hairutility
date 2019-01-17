@@ -24,6 +24,7 @@ class BasicAuthMiddleware(object):
         response['WWW-Authenticate'] = 'Basic realm="This site is currently open to beta-testers only"'
         response.status_code = 401
         return response
+# Need to take BETA_Authorization off
 
     def __call__(self, request):
         if 'HTTP_AUTHORIZATION' not in request.META:

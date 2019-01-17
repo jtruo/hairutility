@@ -127,14 +127,16 @@
 
                   <!-- Logo -->
                   <div class="logo-container">
-                    <div class="logo-wrap center">
+                    <div class="logo-wrap text-center">
                       <a href="{% url 'home' %}">
                         <img class="logo" src="{% static 'img/hairutility_logo.png' %}" alt="logo">
                       </a>
                     </div>
                   </div>
 
-                  {% comment %} <!-- Cart -->
+
+
+                <!-- Cart -->
                   <div class="nav-cart-wrap hidden-sm hidden-xs">
                     <div class="nav-cart right">
                       <div class="nav-cart-outer">
@@ -204,7 +206,7 @@
                         <a href="#">$0</a>
                       </span>
                     </div>
-                  </div> <!-- end cart --> {% endcomment %}
+                  </div> <!-- end cart -->
 
                 </div>
               </div> <!-- end header wrap -->
@@ -238,7 +240,7 @@
                     </li>
 
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">HAIRSTYLES</a>
+                      <a href="{% url 'hair-profiles' %}" class="dropdown-toggle" data-toggle="dropdown">HAIRSTYLES</a>
                       <ul class="dropdown-menu megamenu">
                         <li>
                           <div class="megamenu-wrap">
@@ -324,6 +326,9 @@
 {% endblock %}
 
 {% block about-us %}
+{% endblock %}
+
+{% block hair-profiles %}
 {% endblock %}
 
 {% block error404 %}

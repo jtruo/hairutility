@@ -5,7 +5,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from .users.views import UserViewSet, HairProfileViewSet, CompanyViewSet, ObtainAuthTokenView
-from .webapp.views import HomePageView, AboutUsPageView
+from .webapp.views import HomePageView, AboutUsPageView, hair_profiles
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -25,6 +25,7 @@ urlpatterns = [
     # Web views
     path('', HomePageView.as_view(), name='home'),
     path('about-us/', AboutUsPageView.as_view(), name='about-us'),
+    path('hair-profiles/', hair_profiles, name='hair-profiles'),
     # path('test/', TestPageView.as_view(), name='test'),
     # path('profile/', UserProfileView.as_view(), name='usr_profile')
 
