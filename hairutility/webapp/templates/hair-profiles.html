@@ -17,6 +17,19 @@
       </ol> <!-- end breadcrumbs -->
     </div>
 
+{% comment %} 
+                                <div class="row">
+                                   {% for key in keys %}
+                                    <div class="col-md-3">
+                                        <img src="{{ key }}" width="300" height="300">
+                                    </div>
+                                        <!-- if last column in row -->
+                                        {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                                        </div><div class="row">
+                                        {% endif %}
+
+                                    {% endfor %}
+                        </div> {% endcomment %}
 
     <!-- Catalogue -->
     <section class="section-wrap pt-70 pb-40 catalogue">

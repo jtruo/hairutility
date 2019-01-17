@@ -8,6 +8,8 @@ services:
     environment:
       - DJANGO_SECRET_KEY=local
     image: web
+    env_file:
+      - .env
     build: ./
     command: >
       bash -c "python wait_for_postgres.py &&
