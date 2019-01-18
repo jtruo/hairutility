@@ -5,8 +5,8 @@ from django.conf import settings
 import boto3
 
 session = boto3.Session(
-    aws_access_key_id=settings.DJANGO_AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=settings.DJANGO_AWS_SECRET_ACCESS_KEY
+    aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
 
 )
 s3 = session.resource('s3')
