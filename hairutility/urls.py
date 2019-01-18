@@ -14,7 +14,7 @@ router.register(r'companies', CompanyViewSet)
 
 urlpatterns = [
     # Admin views
-    path('admin/', admin.site.urls),
+    path('v4e8S3UoTmbcFqB7/', admin.site.urls),
     path('nested_admin/', include('nested_admin.urls')),
 
     # Api views
