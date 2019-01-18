@@ -1,10 +1,15 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.conf import settings
 import boto3
 
+session = boto3.Session(
+    aws_access_key_id=settings.DJANGO_AWS_ACCESS_KEY_ID,
+    aws_secret_access_key=settings.DJANGO_AWS_SECRET_ACCESS_KEY
 
-s3 = boto3.resource('s3')
+)
+s3 = session.resource('s3')
 client = boto3.client('s3')
 my_bucket = s3.Bucket('hairutility-prod')
 
