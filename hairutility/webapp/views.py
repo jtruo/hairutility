@@ -4,14 +4,31 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
 import boto3
 
-session = boto3.Session(
+# session = boto3.Session(
+#     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+#     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+
+# )
+# s3 = session.resource('s3')
+# client = boto3.client('s3')
+# bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+
+session = boto3.session.Session(
     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
+    aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
 
 )
-s3 = session.resource('s3')
-client = boto3.client('s3')
-bucket_name = settings.AWS_STORAGE_BUCKET_NAME
+
+s3 = session.resource(
+    service_name='s3',
+    endpoint_url=settings.AWS_S3_ENDPOINT_URL,
+
+)
+bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
+
+# Two options.... custom pagination through the cilent, or use the resource and set page_size
+#
+# Only the client has endpoint config, but resoruce makes everything simpler
 
 
 class HomePageView(TemplateView):
@@ -26,8 +43,8 @@ def hair_profiles(request):
 
     key_list = []
 
-    for key in my_bucket.objects.filter(Prefix='images/'):
-        key_urls = 'https://s3.us-east-2.amazonaws.com/' + bucket_name + key.key
+    for key in bucket.objects.filter(Prefix='images/'):
+        key_urls = 'https://s3.us-east-2.amazonaws.com/' + key.key
         print(key_urls)
         key_list.append(key_urls)
 
