@@ -11,7 +11,7 @@ session = boto3.Session(
 )
 s3 = session.resource('s3')
 client = boto3.client('s3')
-my_bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
+bucket_name = settings.AWS_STORAGE_BUCKET_NAME
 
 
 class HomePageView(TemplateView):
@@ -27,7 +27,7 @@ def hair_profiles(request):
     key_list = []
 
     for key in my_bucket.objects.filter(Prefix='images/'):
-        key_urls = 'https://s3.us-east-2.amazonaws.com/' + my_bucket + key.key
+        key_urls = 'https://s3.us-east-2.amazonaws.com/' + bucket_name + key.key
         print(key_urls)
         key_list.append(key_urls)
 
