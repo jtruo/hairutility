@@ -1,7 +1,7 @@
 # hairutility-web
 
 [![Build Status](https://travis-ci.org/jtruo/hairutility-web.svg?branch=master)](https://travis-ci.org/jtruo/hairutility-web)
-[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Django_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
+[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 
 Django api and web. Check out the project's [documentation](http://jtruo.github.io/hairutility-web/).
 
@@ -35,6 +35,14 @@ docker rmi -f $(docker images -q)
 Remove postgres container
 docker rmi postgres:10
 
+Localstack
+
+config localstack on docker-compose.yml 
+
+ENV vars for Local. Local dev must provide a .env file with AWS keys for local S#
+
+
+
 
 # Continuous Deployment
 
@@ -47,41 +55,32 @@ View push commands in repo
 Run task
 
 
-
-
 Initialize the production server:
 
 
 heroku create hairutility-prod --remote prod && \
     heroku addons:create newrelic:wayne --app hairutility-prod && \
     heroku addons:create heroku-postgresql:hobby-dev --app hairutility-prod && \
-    heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-prod" \
-        DJANGO_CONFIGURATION="Production" \
-        DJANGO_SETTINGS_MODULE="hairutility.config" \
-        --app hairutility-prod
-
-ALSO set these config vars to enable Heroku to upload other files to AWS
+    heroku config:set SECRET_KEY=`openssl rand -base64 32` \
         AWS_ACCESS_KEY_ID="Add your id" \
         AWS_SECRET_ACCESS_KEY="Add your key" \
         AWS_STORAGE_BUCKET_NAME="hairutility-prod" \
-
+        CONFIGURATION="Production" \
+        SETTINGS_MODULE="hairutility.config" \
+        --app hairutility-prod
 
 
 Initialize the qa server:
 
-
 heroku create hairutility-qa --remote qa && \
     heroku addons:create newrelic:wayne --app hairutility-qa && \
     heroku addons:create heroku-postgresql:hobby-dev --app hairutility-qa && \
-    heroku config:set DJANGO_SECRET_KEY=`openssl rand -base64 32` \
-        DJANGO_AWS_ACCESS_KEY_ID="Add your id" \
-        DJANGO_AWS_SECRET_ACCESS_KEY="Add your key" \
-        DJANGO_AWS_STORAGE_BUCKET_NAME="hairutility-qa" \
-        DJANGO_CONFIGURATION="Production" \
-        DJANGO_SETTINGS_MODULE="hairutility.config" \
+    heroku config:set SECRET_KEY=`openssl rand -base64 32` \
+        AWS_ACCESS_KEY_ID="Add your id" \
+        AWS_SECRET_ACCESS_KEY="Add your key" \
+        AWS_STORAGE_BUCKET_NAME="hairutility-qa" \
+        CONFIGURATION="Production" \
+        SETTINGS_MODULE="hairutility.config" \
         --app hairutility-qa
 
 
@@ -120,4 +119,3 @@ Connect by:
 
 psql --host=hairutility-postgresql.cwv7chbb2fjl.us-east-2.rds.amazonaws.com --port=5432 --username=jtruo --password --dbname=postgres
 
-<!-- Static files are not loading access is not allowed to s3 -->

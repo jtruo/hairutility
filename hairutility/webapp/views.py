@@ -26,10 +26,6 @@ s3 = session.resource(
 )
 bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
 
-# Two options.... custom pagination through the cilent, or use the resource and set page_size
-#
-# Only the client has endpoint config, but resoruce makes everything simpler
-
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
@@ -44,7 +40,7 @@ def hair_profiles(request):
     key_list = []
 
     for key in bucket.objects.filter(Prefix='images/'):
-        key_urls = 'https://s3.us-east-2.amazonaws.com/' + key.key
+        key_urls = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
         print(key_urls)
         key_list.append(key_urls)
 
