@@ -1,20 +1,25 @@
 {% load static %}
 {% load i18n %}
 {% comment %} Base is the base for the header and footer of the entire website.
- The base is based off of the original index template page. {% endcomment %}
+The base is based off of the original index template page. {% endcomment %}
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
   <title>HairUtility | Home</title>
 
   <meta charset="utf-8">
   <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="">
-  
+  <meta name="google-site-verification" content="UmbzaFAxPZfVQXEURu54OLdN-rNaVDh0i_j_X9iPrXo" />
+
   <!-- Google Fonts -->
-  {% comment %} <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700%7CRaleway:300,400,700%7CPlayfair+Display:700' rel='stylesheet'> {% endcomment %}
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> 
+  {% comment %}
+  <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,700%7CRaleway:300,400,700%7CPlayfair+Display:700'
+    rel='stylesheet'> {% endcomment %}
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   <!-- Css -->
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
@@ -41,9 +46,9 @@
       <div></div>
     </div>
   </div>
-<main class="content-wrapper oh">
-   
-   
+  <main class="content-wrapper oh">
+
+
     <header class="nav-type-1">
 
       <div class="top-bar hidden-sm hidden-xs">
@@ -53,9 +58,6 @@
               <div class="top-bar-links">
                 <ul class="col-sm-6 top-bar-acc">
                   <li class="top-bar-link"><a href="#">My Account</a></li>
-                  <li class="top-bar-link"><a href="#">My Wishlist</a></li>
-                  <li class="top-bar-link"><a href="#">Newsletter</a></li>
-                  <li class="top-bar-link"><a href="#">Login</a></li>
                   <li class="top-bar-link"><a href="contact.html">Contact</a></li>
                 </ul>
 
@@ -80,15 +82,15 @@
                       <a href="#"><i class="fa fa-vimeo"></i></a>
                     </div>
                   </li>
-                </ul>              
+                </ul>
 
               </div>
             </div>
           </div>
-          
+
         </div>
       </div> <!-- end top bar -->
-    
+
       <nav class="navbar navbar-static-top">
         <div class="navigation" id="sticky-nav">
           <div class="container relative">
@@ -129,14 +131,14 @@
                   <div class="logo-container">
                     <div class="logo-wrap text-center">
                       <a href="{% url 'home' %}">
-                        <img class="logo" src="{% static 'img/hairutility_logo.png' %}" alt="logo">
+                        <img class="logo" src="{% static 'img/hairutility_logo2x.png' %}" alt="logo">
                       </a>
                     </div>
                   </div>
 
 
 
-                <!-- Cart -->
+                  <!-- Cart -->
                   <div class="nav-cart-wrap hidden-sm hidden-xs">
                     <div class="nav-cart right">
                       <div class="nav-cart-outer">
@@ -213,7 +215,7 @@
 
               <div class="nav-wrap">
                 <div class="collapse navbar-collapse" id="navbar-collapse">
-                  
+
                   <ul class="nav navbar-nav">
 
                     <li id="mobile-search" class="hidden-lg hidden-md">
@@ -247,22 +249,19 @@
                             <div class="row">
 
                               <div class="col-md-3 megamenu-item">
-                                <h6>For Man</h6>
+                                <h6>Men</h6>
                                 <ul class="menu-list">
-                                  <li><a href="#">Shirts</a></li>
-                                  <li><a href="#">Jeans</a></li>
-                                  <li><a href="#">Accessories</a></li>
-                                  <li><a href="#">Shoes</a></li>
+                                  <li><a href="#">Short</a></li>
+                                  <li><a href="#">Medium</a></li>
+                                  <li><a href="#">Long</a></li>
                                 </ul>
                               </div>
-
                               <div class="col-md-3 megamenu-item">
-                                <h6>For Woman</h6>
+                                <h6>Women</h6>
                                 <ul class="menu-list">
-                                  <li><a href="#">Dresses</a></li>
-                                  <li><a href="#">Coats</a></li>
-                                  <li><a href="#">Accessories</a></li>
-                                  <li><a href="#">Sandals</a></li>
+                                  <li><a href="#">Short</a></li>
+                                  <li><a href="#">Medium</a></li>
+                                  <li><a href="#">Long</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -271,34 +270,17 @@
                       </ul>
                     </li> <!-- end categories -->
 
-                    <li class="dropdown">
+                    {% comment %} <li class="dropdown">
                       <a href="#">Blog</a>
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
                         <li><a href="blog-standard.html">Standard</a></li>
                         <li><a href="blog-single.html">Single Post</a></li>
                       </ul>
-                    </li>
-
-                    {% comment %} <li class="dropdown">
-                      <a href="#">Shop</a>
-                      <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu">
-                        <li><a href="shop-catalog.html">Catalog</a></li>
-                        <li><a href="shop-collections.html">Collections</a></li>
-                        <li><a href="shop-single-product.html">Single Product</a></li>
-                        <li><a href="shop-cart.html">Cart</a></li>
-                        <li><a href="shop-checkout.html">Checkout</a></li>
-                      </ul>
                     </li> {% endcomment %}
 
                     <li class="dropdown">
                       <a href="#">SALONS</a>
-                      <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
-                      <ul class="dropdown-menu">
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
-                        <li><a href="typography.html">Typography</a></li>
-                      </ul>
                     </li>
 
                     <li class="mobile-links">
@@ -311,44 +293,48 @@
                         </li>
                       </ul>
                     </li>
-        
+
                   </ul> <!-- end menu -->
                 </div> <!-- end collapse -->
               </div> <!-- end col -->
-          
+
             </div> <!-- end row -->
           </div> <!-- end container -->
         </div> <!-- end navigation -->
       </nav> <!-- end navbar -->
     </header> <!-- end navigation -->
 
-{% block index %}
-{% endblock %}
+    {% block index %}
+    {% endblock %}
 
-{% block about-us %}
-{% endblock %}
+    {% block about-us %}
+    {% endblock %}
 
-{% block hair-profiles %}
-{% endblock %}
+    {% block hair-profiles %}
+    {% endblock %}
 
-{% block error404 %}
-{% endblock %}
+    {% block single-hair-profile%}
+    {% endblock %}
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/5c20fdb582491369ba9f5a1a/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+    {% block error404 %}
+    {% endblock %}
 
-        <!-- Footer Type-1 -->
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/5c20fdb582491369ba9f5a1a/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <!-- Footer Type-1 -->
     <footer class="footer footer-type-1 bg-white">
       <div class="container">
         <div class="footer-widgets top-bottom-dividers pb-mdm-20">
@@ -358,11 +344,10 @@ s0.parentNode.insertBefore(s1,s0);
               <div class="widget footer-links">
                 <h5 class="widget-title uppercase">Information</h5>
                 <ul class="list-no-dividers">
-                  <li><a href="#">Our stores</a></li>
                   <li><a href="#">About us</a></li>
-                  <li><a href="#">Business with us</a></li>
-                  <li><a href="#">Delivery information</a></li>
+                  <li><a href="#">Development Phases</a></li>
                   <li><a href="#">Terms &amp; Conditions</a></li>
+
                 </ul>
               </div>
             </div>
@@ -370,12 +355,10 @@ s0.parentNode.insertBefore(s1,s0);
             <div class="col-md-2 col-sm-4 col-xs-4 col-xxs-12">
               <div class="widget footer-links">
                 <h5 class="widget-title uppercase">Help</h5>
-                <ul class="list-no-dividers">                  
+                <ul class="list-no-dividers">
                   <li><a href="#">Contact us</a></li>
-                  <li><a href="#">Track order</a></li>
                   <li><a href="#">F.A.Q</a></li>
                   <li><a href="#">Privacy policy</a></li>
-                  <li><a href="#">Returns</a></li>
                 </ul>
               </div>
             </div>
@@ -385,18 +368,17 @@ s0.parentNode.insertBefore(s1,s0);
                 <h5 class="widget-title uppercase">Account</h5>
                 <ul class="list-no-dividers">
                   <li><a href="#">My account</a></li>
-                  <li><a href="#">Wishlist</a></li>
                   <li><a href="#">Order history</a></li>
-                  <li><a href="#">Special gifts</a></li>
                   <li><a href="#">Track order</a></li>
                 </ul>
               </div>
-            </div>              
+            </div>
 
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="widget">
                 <h5 class="widget-title uppercase">About Us</h5>
-                <p class="mb-0">Hairutility is a website and mobile app for helping people receive better haircuts. Use our website and app to find detailed information on haircuts and communicate better your stylist. </p>
+                <p class="mb-0">Hairutility is a website and mobile app for helping people receive better haircuts. Use
+                  our website and app to find detailed information on haircuts and communicate better your stylist. </p>
               </div>
             </div>
 
@@ -414,10 +396,10 @@ s0.parentNode.insertBefore(s1,s0);
                   <a href="#"><i class="fa fa-vimeo"></i></a>
                 </div>
               </div>
-            </div> <!-- end stay in touch -->           
+            </div> <!-- end stay in touch -->
 
           </div>
-        </div>    
+        </div>
       </div> <!-- end container -->
 
       <div class="bottom-footer bg-white">
@@ -448,13 +430,14 @@ s0.parentNode.insertBefore(s1,s0);
         </div>
       </div> <!-- end bottom footer -->
     </footer> <!-- end footer -->
-</main>
+  </main>
 
-      <!-- jQuery Scripts -->
+  <!-- jQuery Scripts -->
   <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
 
 </body>
+
 </html>

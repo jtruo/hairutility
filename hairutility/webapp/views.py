@@ -2,6 +2,9 @@ from django.views.generic import TemplateView
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.template.defaulttags import register
+from django.http import Http404
+from hairutility.users.models import HairProfile
 import boto3
 
 # session = boto3.Session(
@@ -37,19 +40,50 @@ class AboutUsPageView(TemplateView):
 
 def hair_profiles(request):
 
-    key_list = []
+    key_dict = {}
 
-    for key in bucket.objects.filter(Prefix='images/'):
-        key_urls = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
-        print(key_urls)
-        key_list.append(key_urls)
+    """
+    Grabs list of keys of public hair profiles from s3. Paginates the keys as well as stripping the 
+    thumbnail prefix from the keys to send to the single-hair-profile view. A paginator needs to 
+    be implemented for retrieval.
+    """
+    for key in bucket.objects.filter(Prefix='thumbnails/'):
+        key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
+        print(key_url)
+        stripped_key_url = key.key[11:]
 
-    paginator = Paginator(key_list, 5)
+        print(stripped_key_url)
 
-    page = request.GET.get('page')
+        key_dict[key_url] = stripped_key_url
 
-    keys = paginator.get_page(page)
+    # paginator = Paginator(key_list, 24)
 
+    # page = request.GET.get('page')
+
+    # keys = paginator.get_page(page)
+
+    """Removes the empty path/object obtained from having the AWS prefix"""
+
+    del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+
+    return render(request, 'hair-profiles.html', {'key_dict': key_dict})
+
+
+def single_hair_profile(request, thumbnail_key):
+
+    hair_profile = HairProfile()
+
+    try:
+        hair_profile = HairProfile.objects.get(thumbnail_key=thumbnail_key)
+    except HairProfile.DoesNotExist:
+        raise Http404
+
+    first_full_url = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
+        '.s3.amazonaws.com/images/' + hair_profile.first_image_url
     # return render(request, 'hair-profiles.html')
 
-    return render(request, 'hair-profiles.html', {'keys': keys})
+    return render(request, 'single-hair-profile.html', {'hair_profile': hair_profile, 'first_full_url': first_full_url})
+
+
+class SingleHairProfileView(TemplateView):
+    template_name = 'single-hair-profile.html'

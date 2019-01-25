@@ -17,6 +17,11 @@ Start the dev server for local development:
 
 docker-compose up
 
+When adding new static files to the folder;
+
+docker-compose build 
+
+
 Run a command inside the docker container:
 
 docker-compose run --rm web [command]
@@ -35,12 +40,9 @@ docker rmi -f $(docker images -q)
 Remove postgres container
 docker rmi postgres:10
 
-Localstack
+AWS S3 Local + Online
 
-config localstack on docker-compose.yml 
-
-ENV vars for Local. Local dev must provide a .env file with AWS keys for local S#
-
+ENV vars for Local. Local dev must provide a .env file with AWS keys and S3 for local dev
 
 
 

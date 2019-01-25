@@ -9,25 +9,36 @@
           <a href="index.html">Home</a>
         </li>
         <li>
-          <a href="index.html">Shop</a>
+          <a href="">
+          <a href="">Shop</a>
         </li>
         <li class="active">
-          Catalog Grid
+          Catalog Grid   
+
+
         </li>
       </ol> <!-- end breadcrumbs -->
     </div>
 
-
+{% comment %} Ok the problem is that if you have single quoted string and you put the uuid, it'll work, but the variable is not registering in {%%} {% endcomment %}
                                 <div class="row">
-                                   {% for key in keys %}
-                                    <div class="col-md-3">
+                                   {% for key, value in key_dict.items %}
+                              
+                                    <div class="col-md-3">  
+                              {% comment %} Works for key, but value is empty apparently {% endcomment %}
+                              {% comment %} The value of the first obejct is empty because of the key being stripped of thumbnails/ yielding an empty string{% endcomment %}
+                                    <a href="{% url 'single-hair-profile' thumbnail_key=value %}">
+                              
+                             
                                         <img src="{{ key }}" width="300" height="300">
+                                    </a>
                                     </div>
                                         <!-- if last column in row -->
                                         {% if forloop.counter|divisibleby:"4" and not forloop.last %}
                                         </div><div class="row">
                                         {% endif %}
 
+                            
                                     {% endfor %}
                         </div> 
 
