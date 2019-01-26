@@ -11,7 +11,7 @@
       <a href="index.html">Shop</a>
     </li>
     <li class="active">
-      Catalog Grid {{ first_full_url }}
+      Catalog Grid {{ first_image_url }}
     </li>
   </ol> <!-- end breadcrumbs -->
 </div>
@@ -20,111 +20,62 @@
 <!-- Single Product -->
 <section class="section-wrap single-product">
   <div class="container relative ">
-    <div class="row">
 
-      <div class="col-sm-8  mb-60 .mx-auto">
+    <div class="row">
+      <div class="col-sm-6  mb-4 ">
 
         <div class="product-img">
-          <a href="{{ first_full_url }}" class="lightbox-img">
-            <img src="{{ first_full_url }}" alt="" />
+          <a href="{{ first_image_url }}" class="img-fluid">
+            <img src="{{ first_image_url }}" alt="" />
+          </a>
+        </div>
+      </div>
+
+
+      <div class="col-sm-6  mb-4">
+
+        <div class="product-img">
+          <a href="{{ second_image_url }}" class="lin
+          img-fluid">
+            <img src="{{ second_image_url }}" alt="" />
           </a>
         </div>
 
+      </div>
+
+    </div>
 
 
-      </div> <!-- end col img slider -->
+    <div class="row">
+      <div class="col-sm-4  mb-60 col-sm-offset-1">
 
-      {% comment %} <div class="col-sm-6 col-xs-12 product-description-wrap">
-        <h1 class="product-title">{{ hair_profile.hairstyle_name}}</h1>
-        <span class="rating">
-          <a href="#">3 Reviews</a>
-        </span> {% endcomment %}
-        {% comment %} <span class="price">
-          <del>
-            <span>$1550.00</span>
-          </del>
-          <ins>
-            <span class="ammount">$1250.00</span>
-          </ins>
-        </span> {% endcomment %}
-        {% comment %} <p class="product-description">A-ha Shop is a very slick and clean e-commerce template with
-          endless possibilities. Creating an awesome clothes store with this Theme is easy than you can imagine</p>
+        <div class="product-img">
+          <a href="{{ third_image_url }}" class="lightbox-img">
+            <img src="{{ third_image_url }}" alt="" />
+          </a>
+        </div>
+      </div>
 
-        <div class="select-options">
-          <div class="row row-20">
-            <div class="col-sm-6">
-              <select class="color-select">
-                <option value>Select color</option>
-                <option value="white">white</option>
-                <option value="grey">grey</option>
-                <option value="black">black</option>
-                <option value="green">green</option>
-                <option value="blue">blue</option>
-              </select>
-            </div>
 
-            <div class="col-sm-6">
-              <select class="size-options">
-                <option value>Select size</option>
-                <option value="XS">XS</option>
-                <option value="S">S</option>
-                <option value="M">M</option>
-                <option value="L">L</option>
-                <option value="XL">XL</option>
-              </select>
-            </div>
-          </div>
+      <div class="col-sm-4  mb-60 col-sm-offset-1">
+
+        <div class="product-img">
+          <a href="{{ fourth_image_url }}" class="lightbox-img">
+            <img src="{{ fourth_image_url }}" alt="" />
+          </a>
         </div>
 
-        <ul class="product-actions clearfix">
+      </div>
 
-          <li>
-            <a href="#" class="btn btn-color btn-lg add-to-cart left"><span>Add to Cart</span></a>
-          </li>
-          <li>
-            <div class="icon-add-to-wishlist left">
-              <a href="#"><i class="icon icon_heart_alt"></i></a>
-            </div>
-          </li>
-          <li>
-            <div class="quantity buttons_added">
-              <input type="button" value="-" class="minus" /><input type="number" step="1" min="0" value="1" title="Qty"
-                class="input-text qty text" /><input type="button" value="+" class="plus" />
-            </div>
-          </li>
-        </ul>
-
-        <div class="product_meta">
-          <span class="sku">SKU: <a href="#">111763</a></span>
-          <span class="posted_in">Category: <a href="#">Accessories</a></span>
-          <span class="tagged_as">Tags: <a href="#">Elegant</a>, <a href="#">Bag</a></span>
-        </div>
-
-        <div class="socials-share clearfix">
-          <div class="social-icons rounded">
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-google-plus"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-vimeo"></i></a>
-          </div>
-        </div> {% endcomment %}
-      </div> <!-- end col product description -->
-    </div> <!-- end row -->
+    </div>
 
     <!-- tabs -->
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-10 col-md-offset-1">
         <div class="tabs tabs-bb">
-          <ul class="nav nav-tabs">
+          <ul class="nav nav-tabs nav-justified">
             <li class="active">
               <a href="#tab-description" data-toggle="tab">Description</a>
-            </li>
-            <li>
-              <a href="#tab-info" data-toggle="tab">Information</a>
-            </li>
-            <li>
-              <a href="#tab-reviews" data-toggle="tab">Reviews</a>
             </li>
           </ul> <!-- end tabs -->
 
@@ -135,6 +86,13 @@
               <p>
                 {{ hair_profile.profile_description }}
               </p>
+
+              <p>
+                Created by: {{ hair_profile.creator }}
+              </p>
+
+
+
             </div>
 
             <div class="tab-pane fade" id="tab-info">
