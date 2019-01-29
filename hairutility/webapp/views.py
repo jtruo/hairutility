@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from django.template import Context
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
@@ -27,11 +28,56 @@ s3 = session.resource(
     endpoint_url=settings.AWS_S3_ENDPOINT_URL,
 
 )
+
+s3Client = boto3.client('s3', region_name='us-east-2')
+
 bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
 
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
+
+    key_dict = {}
+
+    paginator = s3Client.get_paginator('list_objects')
+
+    page_iterator = paginator.paginate(Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+                                       PaginationConfig={'MaxItems': 4},
+                                       Prefix='thumbnails/')
+
+    for page in page_iterator:
+
+        for key in page["Contents"]:
+
+            key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key["Key"]
+
+            print(key_url)
+            stripped_key_url = key["Key"][11:]
+
+            key_dict[key_url] = stripped_key_url
+
+    """Removes the empty path/key obtained form AWS"""
+
+    del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePageView, self).get_context_data(*args, **kwargs)
+        context['key_dict'] = self.key_dict
+        return context
+
+    hair_profiles = HairProfile.objects.get
+    # for key in bucket.objects.filter(Prefix='thumbnails/'):
+    #     key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
+    #     print(key_url)
+    #     stripped_key_url = key.key[11:]
+
+    #     print(stripped_key_url)
+
+    #     key_dict[key_url] = stripped_key_url
+
+    # """Removes the empty path/object obtained from having the AWS prefix"""
+
+    # del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
 
 
 class AboutUsPageView(TemplateView):
@@ -52,19 +98,17 @@ def hair_profiles(request):
         print(key_url)
         stripped_key_url = key.key[11:]
 
+        """Removes the empty path/object obtained from having the AWS prefix"""
         print(stripped_key_url)
 
         key_dict[key_url] = stripped_key_url
 
+    del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
     # paginator = Paginator(key_list, 24)
 
     # page = request.GET.get('page')
 
     # keys = paginator.get_page(page)
-
-    """Removes the empty path/object obtained from having the AWS prefix"""
-
-    del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
 
     return render(request, 'hair-profiles.html', {'key_dict': key_dict})
 

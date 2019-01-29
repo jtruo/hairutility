@@ -3609,7 +3609,7 @@ ol.numbers {
 }
 
 /*-------------------------------------------------------*/
-/* Form Elements
+/* Form Elements/Search
 /*-------------------------------------------------------*/
 input[type="text"],
 input[type="password"],
@@ -3715,6 +3715,27 @@ select::-ms-expand {
 .row-12 input[type="email"] {
   margin-bottom: 12px;
 }
+
+/* Main search
+-------------------------------------------------------*/
+.active-cyan input[type="special-text"] {
+  /* border-bottom: 1px solid #4dd0e1; */
+  /* box-shadow: 0 1px 0 0 #4dd0e1; */
+
+  }
+
+input[type="special-text"] {
+  background-color: transparent;
+
+}
+
+.no-border {
+  border: 0;
+  box-shadow: none !important; /* You may want to include this as bootstrap applies these styles too */
+  border-radius: 0 !important;
+
+}
+
 
 /* Checkboxes & Radio Buttons
 -------------------------------------------------------*/
