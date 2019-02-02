@@ -82,7 +82,9 @@
     <section class="section-wrap new-arrivals pb-40">
       <div class="container">
 
-        <div class="row row-10">              
+        <div class="row row-10">       
+
+      {% if key_dict.items && hair_profiles %}       
 
         {% for key, value in key_dict.items %}
           <div class="col-md-3 col-xs-6">
@@ -100,12 +102,17 @@
                   <a class="product-title" href="{% url 'single-hair-profile' thumbnail_key=hair_profile.thumbnail_key %}">{{ hair_profile.hairstyle_name }}</a>
                 </h3>
               </div>
+
+            
         {% endfor %}
             </div>
           </div>
     
         </div> <!-- end row -->
       </div>
+      {% else %}
+        None
+      {% endif %}
     </section> <!-- end new arrivals -->
 
     <!-- Newsletter -->

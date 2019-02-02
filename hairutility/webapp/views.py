@@ -8,14 +8,6 @@ from django.http import Http404
 from hairutility.users.models import HairProfile
 import boto3
 
-# session = boto3.Session(
-#     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-#     aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY
-
-# )
-# s3 = session.resource('s3')
-# client = boto3.client('s3')
-# bucket_name = settings.AWS_STORAGE_BUCKET_NAME
 
 session = boto3.session.Session(
     aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
