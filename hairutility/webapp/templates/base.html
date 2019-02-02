@@ -67,9 +67,6 @@ The base is based off of the original index template page. {% endcomment %}
                     <div class="language-dropdown">
                       <ul>
                         <li><a href="#">English</a></li>
-                        <li><a href="#">Spanish</a></li>
-                        <li><a href="#">German</a></li>
-                        <li><a href="#">Chinese</a></li>
                       </ul>
                     </div>
                   </li>
@@ -108,7 +105,7 @@ The base is based off of the original index template page. {% endcomment %}
                 <div class="nav-cart mobile-cart hidden-lg hidden-md">
                   <div class="nav-cart-outer">
                     <div class="nav-cart-inner">
-                      <a href="#" class="nav-cart-icon">2</a>
+                      <a href="#" class="nav-cart-icon">0</a>
                     </div>
                   </div>
                 </div>
@@ -237,7 +234,7 @@ The base is based off of the original index template page. {% endcomment %}
                       <ul class="dropdown-menu">
                         <li><a href="{% url 'about-us' %}">About Us</a></li>
                         <li><a href="contact.html">Contact</a></li>
-                        <li><a href="faq.html">F.A.Q</a></li>
+                        <li><a href="{% url 'faq' %}">F.A.Q</a></li>
                       </ul>
                     </li>
 
@@ -307,6 +304,7 @@ The base is based off of the original index template page. {% endcomment %}
     {% block index %}
     {% endblock %}
 
+
     {% block about-us %}
     {% endblock %}
 
@@ -316,8 +314,12 @@ The base is based off of the original index template page. {% endcomment %}
     {% block single-hair-profile%}
     {% endblock %}
 
+    {% block faq %}
+    {% endblock %}
+
     {% block error404 %}
     {% endblock %}
+
 
 
     <!--Start of Tawk.to Script-->

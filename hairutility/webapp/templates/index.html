@@ -2,34 +2,67 @@
 {% load static %}
 {% block index %}
     <!-- Hero Slider -->
-    <section class="section-wrap nopadding">
-      <div class=" col-md-8 col-md-offset-2 container">
-        <div class="entry-slider">
-          <div class="flexslider" id="flexslider-hero">
-            <ul class="slides clearfix">
-              <li>
-                <img src="{% static 'img/slider/2.png'%}" alt="">
-                <div class="img-holder img-1"></div>
-                <div class="hero-holder text-center">
-              <form method="get" action="{% url 'home' %}">
-<div class="input-group">
+    <section class="section-wrap pt-20">
+      <div class="container">
+
+
+{% comment %} <div class="col-sm-12 newsletter-box"> {% endcomment %}
+<div class="col-sm-12">
+
+<div class="col-sm-1"> </div>
+               <div class="col-sm-7" style="border:1px solid #444444;" >
+
+<div class="row">
+
+<p> 
+<h1 class="heading" align="left">Find hair profiles and improve communication with your stylist.</h1>
+</p>
+</div>
+<br>
+<br>
+{% comment %} <br>
+<br>
+<br>
+
+<br>
+<br> {% endcomment %}
+ <div class="row">
+
+<div class="input-group input-group-lg md-form">
   <input class="form-control" type="search" placeholder="Search" aria-label="Search">
     <span class="input-group-btn">
-    <button class="btn btn-default" type="submit">
+    <button class="btn btn-block" type="submit">
         <i class="fa fa-search"></i>
     </button>
   </span>
 </div>
-</form>
+</div>
 
-                        
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div> <!-- end slider -->
+ <br>
+<br>
+<br>
 
-      </div>
+<br>
+<br>
+<div class="row">
+<p>
+<h2 class="heading" align="left">Available for iOS Beta on March 18</h2>
+</p>
+</div> 
+
+
+</div>
+<div class="col-sm-3 pull-left">
+<img src="{% static 'img/slider/hair-profile.png'%}" class="img-responsive" style="border:1px solid #444444;" alt="">
+</div>
+</div>
+<div class="col-sm-1"> </div>
+ </div>
+
+        
+
+
+    
     </section> <!-- end hero slider -->
 
 
@@ -60,14 +93,17 @@
                   {% comment %} <img src="{% static 'img/shop/shop_item_1_back.jpg' %}" alt="" class="back-img"> {% endcomment %}
                 </a>
               </div>
+        {% endfor %}
+        {% for hair_profile in hair_profiles %}
               <div class="product-details">
                 <h3>
-                  <a class="{{ key }}" href="shop-single-product.html">Undercut</a>
+                  <a class="product-title" href="{% url 'single-hair-profile' thumbnail_key=hair_profile.thumbnail_key %}">{{ hair_profile.hairstyle_name }}</a>
                 </h3>
               </div>
+        {% endfor %}
             </div>
           </div>
-        {% endfor %}
+    
         </div> <!-- end row -->
       </div>
     </section> <!-- end new arrivals -->
@@ -87,7 +123,7 @@
       </div>
     </div>
 
-    <!-- Best Sellers -->
+    {% comment %} <!-- Best Sellers -->
     <section class="section-wrap pb-0">
       <div class="container">
 
@@ -123,7 +159,7 @@
                 </h3>
                 <span class="price">
                   <ins>
-                    <span class="ammount">$29.99</span>
+                    <span class="amount">$29.99</span>
                   </ins>
                 </span>
               </div>                          
@@ -157,7 +193,7 @@
                 </h3>
                 <span class="price">
                   <ins>
-                    <span class="ammount">$4.99</span>
+                    <span class="amount">$4.99</span>
                   </ins>
                 </span>
               </div>
@@ -188,7 +224,7 @@
                 </h3>
                 <span class="price">
                   <ins>
-                    <span class="ammount">$29.99</span>
+                    <span class="amount">$29.99</span>
                   </ins>
                 </span>
               </div>              
@@ -225,7 +261,7 @@
                     <span>$5.99</span>
                   </del>
                   <ins>
-                    <span class="ammount">$3.99</span>
+                    <span class="amount">$3.99</span>
                   </ins>
                 </span>
               </div>                  
@@ -235,10 +271,10 @@
 
         </div> <!-- end row -->
       </div>
-    </section> <!-- end best sellers -->            
+    </section> <!-- end best sellers -->             {% endcomment %}
 
     <!-- Partners -->
-    <section class="section-wrap partners pt-0 pb-50">
+    <section class="section-wrap partners pt-50 pb-50">
       <div class="container">
         <div class="row">
 

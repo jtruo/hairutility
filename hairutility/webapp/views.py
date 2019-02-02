@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.template import Context
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -38,34 +38,42 @@ class HomePageView(TemplateView):
     template_name = 'index.html'
 
     key_dict = {}
+    hair_profiles = HairProfile.objects.order_by("-created")[:8]
+    # paginator = s3Client.get_paginator('list_objects')
 
-    paginator = s3Client.get_paginator('list_objects')
+    # page_iterator = paginator.paginate(Bucket=settings.AWS_STORAGE_BUCKET_NAME,
+    #                                    PaginationConfig={'MaxItems': 4},
+    #                                    Prefix='thumbnails/')
 
-    page_iterator = paginator.paginate(Bucket=settings.AWS_STORAGE_BUCKET_NAME,
-                                       PaginationConfig={'MaxItems': 4},
-                                       Prefix='thumbnails/')
+    for hair_profile in hair_profiles:
 
-    for page in page_iterator:
+        thumbnail_key = hair_profile.thumbnail_key
 
-        for key in page["Contents"]:
+        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
 
-            key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key["Key"]
-
-            print(key_url)
-            stripped_key_url = key["Key"][11:]
-
-            key_dict[key_url] = stripped_key_url
-
-    """Removes the empty path/key obtained form AWS"""
-
-    del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+        key_dict[full_key_url] = thumbnail_key
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(*args, **kwargs)
         context['key_dict'] = self.key_dict
+        context['hair_profiles'] = self.hair_profiles
         return context
 
-    hair_profiles = HairProfile.objects.get
+    # for page in page_iterator:
+
+    #     for key in page["Contents"]:
+
+    #         key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key["Key"]
+
+    #         print(key_url)
+    #         stripped_key_url = key["Key"][11:]
+
+    #         key_dict[key_url] = stripped_key_url
+
+    # """Removes the empty path/key obtained form AWS"""
+
+    # del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+
     # for key in bucket.objects.filter(Prefix='thumbnails/'):
     #     key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
     #     print(key_url)
@@ -142,3 +150,7 @@ def single_hair_profile(request, thumbnail_key):
 
 class SingleHairProfileView(TemplateView):
     template_name = 'single-hair-profile.html'
+
+
+class FAQView(TemplateView):
+    template_name = 'faq.html'

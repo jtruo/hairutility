@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block faq %}
+
+    <!-- Breadcrumbs -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li>
+          <a href="index.html">Home</a>
+        </li>
+        <li>
+          <a href="#">Pages</a>
+        </li>
+        <li class="active">
+          FAQ
+        </li>
+      </ol> <!-- end breadcrumbs -->
+    </div>
+
+
+    <!-- FAQ -->
+    <section class="section-wrap faq">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-sm-8">
+            <h2 class="mb-20">Website Questions</h2>
+            <div class="toggle">
+              <div class="acc-panel">
+                <a href="#">What is the difference between HairUtility and Pinterest/Instagram/etc.?</a>
+              </div>
+              <div class="panel-content">
+                <p>The goal of HairUtility is to help people get better haircuts. Stylists can upload complete hair profiles. Users can bring those hair profiles to the stylists and find the right stylist for them.
+                </p>
+              </div>
+              <div class="acc-panel">
+                <a href="#">Will there be a fee for the service?</a>
+              </div>
+              <div class="panel-content">
+                <p>Yes, I want to be as upfront as possible from the beginning. Assuming the project has many users, there will be a monthly subscription fee per stylist with no hidden costs. The fee will most likely be priced similarly/cheaper than the booking apps. Beta-testers will receive months of free subscriptions. This fee will only exist if the stylists/salons are benefitting from the publicity of many users.
+                </p>
+              </div>
+              <div class="acc-panel">
+                <a href="#">Our hair color formulas are confidential, will we be able to hide them?</a>
+              </div>
+              <div class="panel-content">
+                <p>It's possible to implement a feature to hide the hair color formulas; however, the hair profiles uploaded by stylists are publicly available. There isn't a plan to hide any information of the hair profiles, but I can implement a feature if it's desired. 
+                </p>
+              </div>
+            </div> <!-- end toggle -->
+
+            <h2 class="mb-20 mt-80">Mobile App Questions</h2>
+            <div class="toggle mb-80">
+              <div class="acc-panel">
+                <a href="#">Whose phone will be used to create the hair profiles?</a>
+              </div>
+              <div class="panel-content">
+                <p>Both the stylist or the client can create the hair profiles. Hair profiles created by the stylist will be stored in our cloud server and will be publiclly available. Clients will store the profiles locally using their phone storage. 
+                </p>
+              </div>
+              <div class="acc-panel">
+                <a href="#">Will there be an android version??</a>
+              </div>
+              <div class="panel-content">
+                <p>There will be an android version. I'm focusing on seeing whether both the stylists and people receiving the haircuts are benefitting from the app. The android version will most likely be developed after beta-testing.
+                </p>
+              </div>
+            </div> <!-- end toggle -->
+          </div> <!-- end col -->
+
+          <div class="col-sm-3 col-sm-offset-1">
+            <h2 class="uppercase mb-30">support</h2>
+            <div class="service-item-box mb-30">
+              <div class="icon-holder">
+                <i class="fa fa-phone"></i>
+              </div>
+              <div class="service-text">
+                <h3>phone</h3>
+                <p>+1 (260) 705 9188</p>
+              </div>
+            </div>
+            <div class="service-item-box mb-30">
+              <div class="icon-holder">
+                <i class="fa fa-envelope-o"></i>
+              </div>
+              <div class="service-text">
+                <h3>email</h3>
+                <p>jtruong@hairutility.com</p>
+              </div>
+            </div>
+            </div>
+          </div> <!-- end col -->
+
+        </div>
+
+        {% comment %} <div class="row">
+          <div class="col-sm-12">
+            <div class="call-to-action">
+              <h5 class="uppercase">You want to get this theme now?</h5>
+              <a href="#" class="btn btn-lg btn-color"><span>Buy it now</span></a>
+            </div>
+          </div>
+        </div> {% endcomment %}
+
+      </div>
+    </section> <!-- end faq -->
+
+{% endblock %}
