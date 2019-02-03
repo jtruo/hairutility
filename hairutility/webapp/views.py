@@ -113,31 +113,58 @@ def hair_profiles(request):
     return render(request, 'hair-profiles.html', {'key_dict': key_dict})
 
 
-def single_hair_profile(request, thumbnail_key):
+class HairProfilesView(TemplateView):
+    template_name = 'hair-profiles.html'
+
+    key_dict = {}
+    hair_profiles = HairProfile.objects.order_by("-created")
+
+    for hair_profile in hair_profiles:
+
+        thumbnail_key = hair_profile.thumbnail_key
+
+        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
+
+        key_dict[full_key_url] = thumbnail_key
+
+# Need a paginator in the future
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomePageView, self).get_context_data(*args, **kwargs)
+        context['key_dict'] = self.key_dict
+        context['hair_profiles'] = self.hair_profiles
+        return context
+
+
+def single_hair_profile(request, thumbnail_key=''):
 
     hair_profile = HairProfile()
 
-    try:
-        hair_profile = HairProfile.objects.get(thumbnail_key=thumbnail_key)
-    except HairProfile.DoesNotExist:
-        raise Http404
+    if not thumbnail_key:
+        return redirect('single-hair-profile')
 
-    full_url_prefix = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
-        '.s3.amazonaws.com/images/'
+    else:
+        try:
+            hair_profile = HairProfile.objects.get(thumbnail_key=thumbnail_key)
+        except HairProfile.DoesNotExist:
+            raise Http404
 
-    first_image_url = full_url_prefix + hair_profile.first_image_url
-    second_image_url = full_url_prefix + hair_profile.second_image_url
-    third_image_url = full_url_prefix + hair_profile.third_image_url
-    fourth_image_url = full_url_prefix + hair_profile.fourth_image_url
+        full_url_prefix = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
+            '.s3.amazonaws.com/images/'
+
+        first_image_url = full_url_prefix + hair_profile.first_image_url
+        second_image_url = full_url_prefix + hair_profile.second_image_url
+        third_image_url = full_url_prefix + hair_profile.third_image_url
+        fourth_image_url = full_url_prefix + hair_profile.fourth_image_url
 
     # return render(request, 'hair-profiles.html')
 
-    return render(request, 'single-hair-profile.html',
-                  {'hair_profile': hair_profile,
-                   'first_image_url': first_image_url,
-                   'second_image_url': second_image_url,
-                   'third_image_url': third_image_url,
-                   'fourth_image_url': fourth_image_url})
+        return render(request, 'single-hair-profile.html',
+                      {'hair_profile': hair_profile,
+                       'first_image_url': first_image_url,
+                       'second_image_url': second_image_url,
+                       'third_image_url': third_image_url,
+                       'fourth_image_url': fourth_image_url})
 
 
 class SingleHairProfileView(TemplateView):

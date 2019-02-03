@@ -17,13 +17,13 @@
 
                                 <div class="row">
 
-      
+                                  {% if key_dict.items %}
 
                                    {% for key, value in key_dict.items %}
                               
                                     <div class="col-md-3">  
                               {% comment %} The value of the first obejct is empty because of the key being stripped of thumbnails/ yielding an empty string{% endcomment %}
-                                    <a href="{% url 'single-hair-profile' thumbnail_key=value %}">
+                                    <a href="{% url 'single-hair-profile' value %}">
                               
                              
                                         <img src="{{ key }}" width="300" height="300">
@@ -36,6 +36,8 @@
 
                             
                                     {% endfor %}
+
+                                    {% endif %}
                         </div> 
 
     <!-- Catalogue -->

@@ -28,6 +28,7 @@ urlpatterns = [
     path('hair-profiles/', hair_profiles, name='hair-profiles'),
     # path('single-hair-profile/', SingleHairProfileView.as_view(), name='single-hair-profile')
     path('single-hair-profile/<thumbnail_key>/', single_hair_profile, name='single-hair-profile'),
+    # path('single-hair-profile/', single_hair_profile, name='single-hair-profile'),
     path('faq/', FAQView.as_view(), name='faq'),
     # path('single-hair-profile/', single_hair_profile, name='single-hair-profile')
 

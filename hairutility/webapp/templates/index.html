@@ -84,13 +84,13 @@
 
         <div class="row row-10">       
 
-      {% if key_dict.items and hair_profiles %}       
+      {% if key_dict.items is not None and hair_profiles is not None %}       
 
         {% for key, value in key_dict.items %}
           <div class="col-md-3 col-xs-6">
             <div class="product-item">
               <div class="product-img">
-                <a href="{% url 'single-hair-profile' thumbnail_key=value %}">
+                <a href="{% url 'single-hair-profile' value %}">
                   <img src="{{ key }}" alt="">
                   {% comment %} <img src="{% static 'img/shop/shop_item_1_back.jpg' %}" alt="" class="back-img"> {% endcomment %}
                 </a>
@@ -99,7 +99,7 @@
         {% for hair_profile in hair_profiles %}
               <div class="product-details">
                 <h3>
-                  <a class="product-title" href="{% url 'single-hair-profile' thumbnail_key=hair_profile.thumbnail_key %}">{{ hair_profile.hairstyle_name }}</a>
+                  <a class="product-title" href="{% url 'single-hair-profile' hair_profile.thumbnail_key %}">{{ hair_profile.hairstyle_name }}</a>
                 </h3>
               </div>
 
