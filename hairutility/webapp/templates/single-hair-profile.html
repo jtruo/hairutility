@@ -5,13 +5,12 @@
 <div class="container">
   <ol class="breadcrumb">
     <li>
-      <a href="index.html">Home</a>
+      <a href="{% url 'home'%}">Home</a>
     </li>
     <li>
-      <a href="index.html">Shop</a>
+      <a href="{% url 'hair-profiles' %}">Hair Profiles</a>
     </li>
     <li class="active">
-      Catalog Grid {{ first_image_url }}
     </li>
   </ol> <!-- end breadcrumbs -->
 </div>
@@ -22,7 +21,7 @@
   <div class="container relative ">
 
     <div class="row">
-      <div class="col-sm-6  mb-4 ">
+      <div class="col-sm-4  mb-4 col-sm-offset-1 ">
 
         <div class="product-img">
           <a href="{{ first_image_url }}" class="img-fluid">
@@ -32,7 +31,7 @@
       </div>
 
 
-      <div class="col-sm-6  mb-4">
+      <div class="col-sm-4  mb-4 col-sm-offset-1">
 
         <div class="product-img">
           <a href="{{ second_image_url }}" class="lin
@@ -160,7 +159,7 @@
 </section> <!-- end single product -->
 
 
-<!-- Related Items -->
+{% comment %} <!-- Related Items -->
 <section class="section-wrap related-products pt-0">
   <div class="container">
     <div class="row heading-row">
@@ -421,6 +420,6 @@
 
     </div> <!-- end row -->
   </div> <!-- end container -->
-</section> <!-- end related products -->
+</section> <!-- end related products --> {% endcomment %}
 
 {% endblock %}

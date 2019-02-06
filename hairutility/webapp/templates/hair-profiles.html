@@ -6,7 +6,7 @@
     <div class="container">
       <ol class="breadcrumb">
         <li>
-          <a href="index.html">Home</a>
+          <a href="{% url 'home'%}">Home</a>
         </li>
         <li>
           <a href="">
@@ -17,27 +17,6 @@
 
                                 <div class="row">
 
-                                  {% if key_dict.items %}
-
-                                   {% for key, value in key_dict.items %}
-                              
-                                    <div class="col-md-3">  
-                              {% comment %} The value of the first obejct is empty because of the key being stripped of thumbnails/ yielding an empty string{% endcomment %}
-                                    <a href="{% url 'single-hair-profile' value %}">
-                              
-                             
-                                        <img src="{{ key }}" width="300" height="300">
-                                    </a>
-                                    </div>
-                                        <!-- if last column in row -->
-                                        {% if forloop.counter|divisibleby:"4" and not forloop.last %}
-                                        </div><div class="row">
-                                        {% endif %}
-
-                            
-                                    {% endfor %}
-
-                                    {% endif %}
                         </div> 
 
     <!-- Catalogue -->
@@ -48,7 +27,7 @@
           <div class="col-md-9 catalogue-col right mb-50">
 
             <div class="shop-filter">
-              <p class="result-count">Showing: 1-12 of 80 results</p>
+              <p class="result-count">Showing: 1 of 1 result</p>
 
               <form class="ecommerce-ordering">
                 <select>
@@ -66,30 +45,36 @@
 
               <div class="row row-10 items-grid">
 
+{% if key_dict.items%}
+
+  {% for key, value in key_dict.items %}
+
                 <div class="col-md-3 col-xs-4">
                   <div class="product-item">
                     <div class="product-img">
-                      <a href="#"> 
-                        <img src="img/shop/shop_item_1.jpg" alt="">
+                      <a href="{% url 'single-hair-profile' value%}"> 
+                        <img src="{{ key }}" alt="">
                       </a>
-                      <div class="product-label">
-                        <span class="sale">sale</span>
-                      </div>
                     </div>
+          {% endfor %}
+
+          {% for hair_profile in hair_profiles %}
                     <div class="product-details">
-                      <h3>
-                        <a class="product-title" href="shop-single-product.html">Night Party Dress</a>
-                      </h3>
                       <span class="price">
                         <ins>
-                          <span class="ammount">$159.99</span>
+                          <span class="amount">{{ hair_profile.hairstyle_name }}</span>
                         </ins>
                       </span>
                     </div>
                   </div>
                 </div>
- 
+          {% endfor %}
 
+                            {% if forloop.counter|divisibleby:"4" and not forloop.last %}
+                                        </div><div class="row">
+                                   {% endif %}
+
+{% endif %}
               </div> <!-- end row -->
             </div> <!-- end grid mode -->
 
@@ -97,7 +82,7 @@
 
             <!-- Pagination -->
             <div class="pagination-wrap">
-              <p class="result-count">Showing: 1-12 of 80 results</p>              
+              <p class="result-count">Showing: 1 of 1 result</p>              
               <nav class="pagination right clear">
                 <a href="#"><i class="fa fa-angle-left"></i></a><span class="page-numbers current">
                 1</span><a href="#">
@@ -118,10 +103,10 @@
               <h3 class="widget-title uppercase">Gender</h3>
               <ul class="list-no-dividers">
                 <li>
-                  <a href="#">Women</a>
+                  <a href="{% url 'hair-profiles'%}">Women</a>
                 </li>
                 <li>
-                  <a href="#">Men</a>
+                  <a href="{% url 'hair-profiles'%}">Men</a>
                 </li>
               </ul>
             </div>
@@ -131,13 +116,13 @@
               <h3 class="widget-title uppercase">Length</h3>
               <ul class="list-no-dividers">
                 <li>
-                  <a href="#">Short</a>
+                  <a href="{% url 'hair-profiles'%}">Short</a>
                 </li>
                 <li>
-                  <a href="#">Medium</a>
+                  <a href="{% url 'hair-profiles'%}">Medium</a>
                 </li>
                 <li>
-                  <a href="#">Long</a>
+                  <a href="{% url 'hair-profiles'%}">Long</a>
                 </li>
               </ul>
             </div>
@@ -155,6 +140,7 @@
               <a href="#">Curly</a>
               <a href="#">Asian</a>
               <a href="#">Wedding</a>
+              <a href="#">Blonde</a>
             </div>
 
           </aside> <!-- end sidebar -->

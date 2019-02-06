@@ -7,7 +7,7 @@
     <div class="container">
       <ol class="breadcrumb">
         <li>
-          <a href="index.html">Home</a>
+          <a href="{% url 'home' %}">Home</a>
         </li>
       </ol> <!-- end breadcrumbs -->
     </div>
@@ -26,10 +26,10 @@
             <p>HairUtility is a mobile app and website designed to help you receive better haircuts. Both the stylists and clients can utilitze it. You can find detailed information on all kinds of haircuts and store them onto your phone. The detailed information will help the communication gap. Have you ever wanted a specific haircut, but you didn't know how to describe it? Check here. We're dedicated to putting quality over quantity. We listen to all of your feedback for the implementation of new features. </p>
           </div>
           <div class="col-sm-3 col-sm-offset-1">
-            <div class="statistic">
+            {% comment %} <div class="statistic">
               <span>2016</span>
               <h4 class="uppercase">year of foundation</h4>
-            </div>            
+            </div>             {% endcomment %}
             <div class="statistic">
               <span>5</span>
               <h4 class="uppercase">hair salons partner with us</h4>
@@ -62,7 +62,7 @@
                 <img src="img/team/team_1.jpg" alt="">
               </div>
               <h4 class="team-title uppercase">James Truong</h4>
-              <span>Founder</span>
+              {% comment %} <span>Founder</span> {% endcomment %}
               <div class="team-details">
                 <p>I've always had trouble getting the right haircuts, so I built the app and website in order help me get better ones. I enjoy building  oducts that improve the quality of life of others. I hope to show that I care about my customers' feedback with every product I build. </p>
                 <div class="social-icons rounded">
@@ -87,7 +87,7 @@
     </div>
 
     <!-- Testimonials -->
-    <section class="section-wrap testimonials">
+    {% comment %} <section class="section-wrap testimonials">
       <div class="container">
 
         <div class="row heading-row mb-60">
@@ -121,7 +121,7 @@
 
         </div>
       </div>
-    </section> <!-- end testimonials -->
+    </section> <!-- end testimonials --> {% endcomment %}
 
     <!-- Divider -->
     <div class="container">

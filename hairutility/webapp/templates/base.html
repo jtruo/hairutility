@@ -8,6 +8,18 @@ The base is based off of the original index template page. {% endcomment %}
 <html lang="en">
 
 <head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-133832195-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-133832195-1');
+  </script>
+
+
   <title>HairUtility | Home</title>
 
   <meta charset="utf-8">
@@ -58,7 +70,7 @@ The base is based off of the original index template page. {% endcomment %}
               <div class="top-bar-links">
                 <ul class="col-sm-6 top-bar-acc">
                   <li class="top-bar-link"><a href="#">My Account</a></li>
-                  <li class="top-bar-link"><a href="contact.html">Contact</a></li>
+                  {% comment %} <li class="top-bar-link"><a href="contact.html">Contact</a></li> {% endcomment %}
                 </ul>
 
                 <ul class="col-sm-6 text-right top-bar-currency-language">
@@ -215,7 +227,7 @@ The base is based off of the original index template page. {% endcomment %}
                       <i class="fa fa-angle-down dropdown-toggle" data-toggle="dropdown"></i>
                       <ul class="dropdown-menu">
                         <li><a href="{% url 'about-us' %}">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        {% comment %} <li><a href="contact.html">Contact</a></li> {% endcomment %}
                         <li><a href="{% url 'faq' %}">F.A.Q</a></li>
                       </ul>
                     </li>
@@ -228,19 +240,23 @@ The base is based off of the original index template page. {% endcomment %}
                             <div class="row">
 
                               <div class="col-md-3 megamenu-item">
+                              <a href="{% url 'hair-profiles'%}">
                                 <h6>Men</h6>
+                              </a>
                                 <ul class="menu-list">
-                                  <li><a href="#">Short</a></li>
-                                  <li><a href="#">Medium</a></li>
-                                  <li><a href="#">Long</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Short</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Medium</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Long</a></li>
                                 </ul>
                               </div>
                               <div class="col-md-3 megamenu-item">
+                              <a href="{% url 'hair-profiles'%}">
                                 <h6>Women</h6>
+                              </a>
                                 <ul class="menu-list">
-                                  <li><a href="#">Short</a></li>
-                                  <li><a href="#">Medium</a></li>
-                                  <li><a href="#">Long</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Short</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Medium</a></li>
+                                  <li><a href="{% url 'hair-profiles'%}">Long</a></li>
                                 </ul>
                               </div>
                             </div>
@@ -259,7 +275,7 @@ The base is based off of the original index template page. {% endcomment %}
                     </li> {% endcomment %}
 
                     <li class="dropdown">
-                      <a href="#">SALONS</a>
+                      <a href="{% url 'salons' %}">SALONS</a>
                     </li>
 
                     <li class="mobile-links">
@@ -302,6 +318,8 @@ The base is based off of the original index template page. {% endcomment %}
     {% block error404 %}
     {% endblock %}
 
+    {% block wip%}
+    {% endblock %}
 
 
     <!--Start of Tawk.to Script-->
@@ -340,7 +358,7 @@ The base is based off of the original index template page. {% endcomment %}
               <div class="widget footer-links">
                 <h5 class="widget-title uppercase">Help</h5>
                 <ul class="list-no-dividers">
-                  <li><a href="#">Contact us</a></li>
+                  {% comment %} <li><a href="#">Contact us</a></li> {% endcomment %}
                   <li><a href="#">F.A.Q</a></li>
                   <li><a href="#">Privacy policy</a></li>
                 </ul>
@@ -369,8 +387,8 @@ The base is based off of the original index template page. {% endcomment %}
             <div class="col-md-3 col-sm-6 col-xs-12">
               <div class="widget footer-get-in-touch">
                 <h5 class="widget-title uppercase">Contact</h5>
-                <address class="footer-address"><span>Address:</span> PlaceHolder </address>
-                <p>Phone: <a href="tel:+1-888-1554-456-123">+ x-xxx-xxx-xxxx</a></p>
+                {% comment %} <address class="footer-address"><span>Address:</span> PlaceHolder </address> {% endcomment %}
+                <p>Phone: <a href="tel:+1-888-1554-456-123">+ 1-260-705-9188</a></p>
                 <p>Email: <a href="mailto:jtruong@@hairutility.com">jtruong@hairutility.com</a></p>
                 <div class="social-icons rounded mt-20">
                   <a href="#"><i class="fa fa-twitter"></i></a>

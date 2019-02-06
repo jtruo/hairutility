@@ -51,33 +51,33 @@ class HomePageView(TemplateView):
         context['hair_profiles'] = self.hair_profiles
         return context
 
-    # for page in page_iterator:
+# for page in page_iterator:
 
-    #     for key in page["Contents"]:
+#     for key in page["Contents"]:
 
-    #         key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key["Key"]
+#         key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key["Key"]
 
-    #         print(key_url)
-    #         stripped_key_url = key["Key"][11:]
+#         print(key_url)
+#         stripped_key_url = key["Key"][11:]
 
-    #         key_dict[key_url] = stripped_key_url
+#         key_dict[key_url] = stripped_key_url
 
-    # """Removes the empty path/key obtained form AWS"""
+# """Removes the empty path/key obtained form AWS"""
 
-    # del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+# del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
 
-    # for key in bucket.objects.filter(Prefix='thumbnails/'):
-    #     key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
-    #     print(key_url)
-    #     stripped_key_url = key.key[11:]
+# for key in bucket.objects.filter(Prefix='thumbnails/'):
+#     key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/' + key.key
+#     print(key_url)
+#     stripped_key_url = key.key[11:]
 
-    #     print(stripped_key_url)
+#     print(stripped_key_url)
 
-    #     key_dict[key_url] = stripped_key_url
+#     key_dict[key_url] = stripped_key_url
 
-    # """Removes the empty path/object obtained from having the AWS prefix"""
+# """Removes the empty path/object obtained from having the AWS prefix"""
 
-    # del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
+# del key_dict["https://" + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/']
 
 
 class AboutUsPageView(TemplateView):
@@ -130,7 +130,7 @@ class HairProfilesView(TemplateView):
 # Need a paginator in the future
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HomePageView, self).get_context_data(*args, **kwargs)
+        context = super(HairProfilesView, self).get_context_data(*args, **kwargs)
         context['key_dict'] = self.key_dict
         context['hair_profiles'] = self.hair_profiles
         return context
@@ -173,3 +173,7 @@ class SingleHairProfileView(TemplateView):
 
 class FAQView(TemplateView):
     template_name = 'faq.html'
+
+
+class WorkInProgressView(TemplateView):
+    template_name = 'wip.html'

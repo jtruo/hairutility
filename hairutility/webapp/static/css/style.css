@@ -643,7 +643,7 @@ b, strong {
 
 p {
   font-size: 14px;
-  color: #979797;
+  color: #4b4949;
   font-weight: normal;
   line-height: 26px;
 }
@@ -3304,7 +3304,7 @@ ol.numbers {
 
 .tabs-bb .nav.nav-tabs > li.active > a {
   border: none;
-  border-bottom: 2px solid #00c9d0;
+  border-bottom: 2px solid #444444;
 }
 
 .tabs-bb .tab-content {

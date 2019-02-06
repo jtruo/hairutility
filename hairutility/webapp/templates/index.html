@@ -10,7 +10,8 @@
 <div class="col-sm-12">
 
 <div class="col-sm-1"> </div>
-               <div class="col-sm-7" style="border:1px solid #444444;" >
+               {% comment %} <div class="col-sm-7" style="border:1px solid #444444;" > {% endcomment %}
+                <div class="col-sm-7">
 
 <div class="row">
 
@@ -53,7 +54,8 @@
 
 </div>
 <div class="col-sm-3 pull-left">
-<img src="{% static 'img/slider/hair-profile.png'%}" class="img-responsive" style="border:1px solid #444444;" alt="">
+{% comment %} <img src="{% static 'img/slider/hair-profile.png'%}" class="img-responsive" style="border:1px solid #444444;" alt=""> {% endcomment %}
+<img src="{% static 'img/slider/hair-profile.png'%}" class="img-responsive" alt="">
 </div>
 </div>
 <div class="col-sm-1"> </div>
@@ -115,8 +117,8 @@
       {% endif %}
     </section> <!-- end new arrivals -->
 
-    <!-- Newsletter -->
-    <div class="container">
+    <!-- Newsletter -->s
+    {% comment %} <div class="container">
       <div class="row">
         <div class="col-sm-12">
           <div class="newsletter-box">
@@ -128,7 +130,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     {% comment %} <!-- Best Sellers -->
     <section class="section-wrap pb-0">
@@ -281,7 +283,7 @@
     </section> <!-- end best sellers -->             {% endcomment %}
 
     <!-- Partners -->
-    <section class="section-wrap partners pt-50 pb-50">
+    {% comment %} <section class="section-wrap partners pt-50 pb-50">
       <div class="container">
         <div class="row">
 
@@ -332,6 +334,6 @@
           
         </div>
       </div>
-    </section> <!-- end partners -->      
+    </section> <!-- end partners -->       {% endcomment %}
 
 {% endblock %}
