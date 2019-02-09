@@ -229,7 +229,7 @@ video {
   width: 50px;
   height: 50px;
   font-size: 0;
-  color: #00c9d0;
+  color: #444444;
   display: inline-block;
   margin: -25px 0 0 -25px;
   text-indent: -9999em;
@@ -239,7 +239,7 @@ video {
 }
 
 .loader div {
-  background-color: #00c9d0;
+  background-color: #444444;
   display: inline-block;
   float: none;
   position: absolute;

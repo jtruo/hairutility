@@ -80,7 +80,7 @@ class HairProfilesView(TemplateView):
         return context
 
 
-@BasicAuthDecorator
+# @BasicAuthDecorator
 def single_hair_profile(request, thumbnail_key=''):
 
     hair_profile = HairProfile()
