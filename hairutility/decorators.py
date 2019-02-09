@@ -4,19 +4,19 @@ from django.conf import settings
 import base64
 
 
-class BasicAuthMiddleware(object):
+class BasicAuthDecorator(object):
 
     def __init__(self, get_response):
         self.get_response = get_response
 
-    # Handles authorization for accessing the site in beta
-    # If DEBUG is true, we're in dev. Raise MiddlewareNotUsed to remove
-    # this middleware from the list.
-    # TODO: This should probably be based off of the QA env once we hit
-    # production
+        # Handles authorization for accessing the site in beta
+        # If DEBUG is true, we're in dev. Raise MiddlewareNotUsed to remove
+        # this middleware from the list.
+        # TODO: This should probably be based off of the QA env once we hit
+        # production
 
-    # if settings.DEBUG:
-    #     raise MiddlewareNotUsed
+        # if settings.DEBUG:
+        #     raise MiddlewareNotUsed
 
     def _unauthed(self):
         AUTH_TEMPLATE = """ <html> <title>Authentication Required</title> <body> Sorry, we're not ready for you yet. </body> </html> """
@@ -28,6 +28,7 @@ class BasicAuthMiddleware(object):
 
     def __call__(self, request):
         if 'HTTP_AUTHORIZATION' not in request.META:
+            # HTTTP BASIC not found
             return self._unauthed()
         else:
             authentication = request.META['HTTP_AUTHORIZATION']
