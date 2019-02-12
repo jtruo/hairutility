@@ -19,8 +19,8 @@ class HairProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     class Meta:
         model = HairProfile
-        fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_url',
-                  'second_image_url', 'third_image_url', 'fourth_image_url', 'thumbnail_key', 'profile_description',
+        fields = ('pk', 'user', 'creator', 'first_name', 'hairstyle_name', 'first_image_key',
+                  'second_image_key', 'third_image_key', 'fourth_image_key', 'thumbnail_key', 'profile_description',
                   'created', 'is_displayable', 'gender', 'length', 'tags', 'is_approved', 'access_code')
         depth = 1
 

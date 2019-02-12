@@ -45,7 +45,7 @@ class UserAdmin(NestedModelAdmin):
 
 class HairProfilesAdmin(NestedModelAdmin):
 
-    list_display = ('hairstyle_name', 'first_image_url', 'profile_description')
+    list_display = ('hairstyle_name', 'first_image_key', 'profile_description')
     list_filter = ('is_approved',)
 
 

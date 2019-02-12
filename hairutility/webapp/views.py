@@ -80,7 +80,7 @@ class HairProfilesView(TemplateView):
         return context
 
 
-# @BasicAuthDecorator
+# @BasicAuthDecoratorr
 def single_hair_profile(request, thumbnail_key=''):
 
     hair_profile = HairProfile()
@@ -97,14 +97,14 @@ def single_hair_profile(request, thumbnail_key=''):
         full_url_prefix = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
             '.s3.amazonaws.com/images/'
 
-        first_image_url = full_url_prefix + hair_profile.first_image_url
+        first_image_key = full_url_prefix + hair_profile.first_image_key
         second_image_url = full_url_prefix + hair_profile.second_image_url
         third_image_url = full_url_prefix + hair_profile.third_image_url
         fourth_image_url = full_url_prefix + hair_profile.fourth_image_url
 
         return render(request, 'single-hair-profile.html',
                       {'hair_profile': hair_profile,
-                       'first_image_url': first_image_url,
+                       'first_image_key': first_image_key,
                        'second_image_url': second_image_url,
                        'third_image_url': third_image_url,
                        'fourth_image_url': fourth_image_url})
@@ -115,7 +115,7 @@ def single_hair_profile(request, thumbnail_key=''):
 #     template_name = 'single-hair-profile.html'
 
 #     hair_profile = HairProfile()
-#     first_image_url = ""
+#     first_image_key = ""
 #     second_image_url = ""
 #     third_image_url = ""
 #     fourth_image_url = ""
@@ -135,7 +135,7 @@ def single_hair_profile(request, thumbnail_key=''):
 #         full_url_prefix = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
 #             '.s3.amazonaws.com/images/'
 
-#         first_image_url = full_url_prefix + hair_profile.first_image_url
+#         first_image_key = full_url_prefix + hair_profile.first_image_k
 #         second_image_url = full_url_prefix + hair_profile.second_image_url
 #         third_image_url = full_url_prefix + hair_profile.third_image_url
 #         fourth_image_url = full_url_prefix + hair_profile.fourth_image_url
@@ -143,7 +143,7 @@ def single_hair_profile(request, thumbnail_key=''):
 #     def get_context_data(self, *args, **kwargs):
 #         context = super(SingleHairProfileView, self).get_context_data(*args, **kwargs)
 #         context['hair_profile'] = self.hair_profile
-#         context['first_image_url'] = self.first_image_url
+#         context['first_image_key'] = self.first_image_k
 #         context['second_image_url'] = self.second_image_url
 #         context['third_image_url'] = self.third_image_url
 #         context['fourth_image_url'] = self.fourth_image_url

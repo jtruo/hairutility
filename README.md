@@ -29,6 +29,8 @@ docker-compose run --rm web [command]
 
 Do this everytime you make changes to the database/models.py:
 
+If unable to migrate due to missing column or etc., make sure all references to old models in views.py/admin.py are commented out or name changed as well
+
 docker-compose run --rm web python3 manage.py makemigrations
 docker-compose run --rm web python3 manage.py migrate
 
