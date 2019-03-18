@@ -80,7 +80,6 @@ class HairProfilesView(TemplateView):
         return context
 
 
-# @BasicAuthDecoratorr
 def single_hair_profile(request, thumbnail_key=''):
 
     hair_profile = HairProfile()
@@ -97,14 +96,14 @@ def single_hair_profile(request, thumbnail_key=''):
         full_url_prefix = "https://" + settings.AWS_STORAGE_BUCKET_NAME + \
             '.s3.amazonaws.com/images/'
 
-        first_image_key = full_url_prefix + hair_profile.first_image_key
-        second_image_url = full_url_prefix + hair_profile.second_image_url
-        third_image_url = full_url_prefix + hair_profile.third_image_url
-        fourth_image_url = full_url_prefix + hair_profile.fourth_image_url
+        first_image_url = full_url_prefix + hair_profile.first_image_key
+        second_image_url = full_url_prefix + hair_profile.second_image_key
+        third_image_url = full_url_prefix + hair_profile.third_image_key
+        fourth_image_url = full_url_prefix + hair_profile.fourth_image_key
 
         return render(request, 'single-hair-profile.html',
                       {'hair_profile': hair_profile,
-                       'first_image_key': first_image_key,
+                       'first_image_url': first_image_url,
                        'second_image_url': second_image_url,
                        'third_image_url': third_image_url,
                        'fourth_image_url': fourth_image_url})

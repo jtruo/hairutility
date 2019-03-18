@@ -46,7 +46,9 @@ AWS S3 Local + Online
 
 ENV vars for Local. Local dev must provide a .env file with AWS keys and S3 for local dev
 
+# Important Issues
 
+!!! If there is no hair profile image in AWS3 for single-hair-profile but the image key is in db, the website will crash
 
 # Continuous Deployment
 

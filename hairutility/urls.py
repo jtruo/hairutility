@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 
 from .users.views import UserViewSet, HairProfileViewSet, CompanyViewSet, ObtainAuthTokenView
 from .webapp.views import HomePageView, AboutUsPageView, FAQView, WorkInProgressView, single_hair_profile, HairProfilesView
-
+# from .webapp.views import AboutUsPageView, FAQView, WorkInProgressView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
