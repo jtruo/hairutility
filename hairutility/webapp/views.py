@@ -38,11 +38,13 @@ class HomePageView(TemplateView):
 
     for hair_profile in hair_profiles:
 
-        thumbnail_key = hair_profile.thumbnail_key
+        if hair_profile.is_approved:
 
-        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
+            thumbnail_key = hair_profile.thumbnail_key
 
-        key_dict[full_key_url] = thumbnail_key
+            full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
+
+            key_dict[full_key_url] = thumbnail_key
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(*args, **kwargs)
@@ -65,11 +67,13 @@ class HairProfilesView(TemplateView):
 
     for hair_profile in hair_profiles:
 
-        thumbnail_key = hair_profile.thumbnail_key
+        if hair_profile.is_approved:
 
-        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
+            thumbnail_key = hair_profile.thumbnail_key
 
-        key_dict[full_key_url] = thumbnail_key
+            full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
+
+            key_dict[full_key_url] = thumbnail_key
 
 # Need a paginator in the future
 
