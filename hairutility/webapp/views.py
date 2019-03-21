@@ -34,17 +34,15 @@ class HomePageView(TemplateView):
     template_name = 'index.html'
 
     key_dict = {}
-    hair_profiles = HairProfile.objects.order_by("-created")[:8]
+    hair_profiles = HairProfile.objects.order_by("-created").filter(is_approved=True)[:8]
 
     for hair_profile in hair_profiles:
 
-        if hair_profile.is_approved:
+        thumbnail_key = hair_profile.thumbnail_key
 
-            thumbnail_key = hair_profile.thumbnail_key
+        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
 
-            full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
-
-            key_dict[full_key_url] = thumbnail_key
+        key_dict[full_key_url] = thumbnail_key
 
     def get_context_data(self, *args, **kwargs):
         context = super(HomePageView, self).get_context_data(*args, **kwargs)
@@ -63,17 +61,15 @@ class HairProfilesView(TemplateView):
     template_name = 'hair-profiles.html'
 
     key_dict = {}
-    hair_profiles = HairProfile.objects.order_by("-created")
+    hair_profiles = HairProfile.objects.order_by("-created").filter(is_approved=True)
 
     for hair_profile in hair_profiles:
 
-        if hair_profile.is_approved:
+        thumbnail_key = hair_profile.thumbnail_key
 
-            thumbnail_key = hair_profile.thumbnail_key
+        full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
 
-            full_key_url = 'https://' + settings.AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/thumbnails/' + thumbnail_key
-
-            key_dict[full_key_url] = thumbnail_key
+        key_dict[full_key_url] = thumbnail_key
 
 # Need a paginator in the future
 
