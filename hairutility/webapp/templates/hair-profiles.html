@@ -47,12 +47,12 @@
 
 {% if key_dict.items%}
 
-  {% for key, value in key_dict.items %}
+  {% for key, id in key_dict.items %}
 
                 <div class="col-md-3 col-xs-4">
                   <div class="product-item">
                     <div class="product-img">
-                      <a href="{% url 'single-hair-profile' value%}"> 
+                      <a href="{% url 'single-hair-profile' id%}"> 
                         <img src="{{ key }}" alt="">
                       </a>
                     </div>
