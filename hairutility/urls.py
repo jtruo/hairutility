@@ -27,7 +27,7 @@ urlpatterns = [
     path('', HomePageView.as_view(), name='home'),
     path('about-us/', AboutUsPageView.as_view(), name='about-us'),
     path('hair-profiles/', HairProfilesView.as_view(), name='hair-profiles'),
-    path('single-hair-profile/<thumbnail_key>/', single_hair_profile, name='single-hair-profile'),
+    path('single-hair-profile/<id>/', single_hair_profile, name='single-hair-profile'),
 
     path('faq/', FAQView.as_view(), name='faq'),
     path('salons', WorkInProgressView.as_view(), name='salons'),
