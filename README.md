@@ -15,6 +15,8 @@ Django api and web. Check out the project's [documentation](http://jtruo.github.
 
 Start the dev server for local development:
 
+ENV vars for Local. Local dev must provide a .env file with AWS keys and S3 for local dev
+
 docker-compose up
 
 When adding new static files to the folder;
@@ -23,6 +25,7 @@ docker-compose build
 
 
 Run a command inside the docker container:
+
 
 docker-compose run --rm web [command]
 
@@ -42,13 +45,10 @@ docker rmi -f $(docker images -q)
 Remove postgres container
 docker rmi postgres:10
 
-AWS S3 Local + Online
-
-ENV vars for Local. Local dev must provide a .env file with AWS keys and S3 for local dev
-
 # Important Issues
 
-!!! If there is no hair profile image in AWS3 for single-hair-profile but the image key is in db, the website will crash
+!!!Server needs to be restarted in order to refresh is_approved hair profiles
+!!! Remember to change bucket name on iOS app when using local S3
 
 # Continuous Deployment
 

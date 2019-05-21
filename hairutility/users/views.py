@@ -57,6 +57,7 @@ class HairProfileViewSet(viewsets.ModelViewSet):
         user = self.request.query_params.get('user', None)
         user__email = self.request.query_params.get('user__email', None)
         access_code = self.request.query_params.get('access_code', None)
+        is_approved = self.request.query_params.get('is_approved', None)
 
         if user__email and access_code is not None:
             queryset = queryset.filter(user__email=user__email, access_code=access_code)
@@ -64,9 +65,13 @@ class HairProfileViewSet(viewsets.ModelViewSet):
 
         if user is not None:
             return queryset.filter(user=self.request.user)
+            # query for uuid and user
+
+        if is_approved:
+            return queryset.filter(is_approved=True)
 
         else:
-            queryset = queryset.filter(is_approved=True)
+            queryset = queryset.filter(user=self.request.user)
             return queryset
 
     def perform_create(self, serializer):
