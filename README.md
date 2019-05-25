@@ -49,6 +49,7 @@ docker rmi postgres:10
 
 !!!Server needs to be restarted in order to refresh is_approved hair profiles
 !!! Remember to change bucket name on iOS app when using local S3
+!!! Deleted profiles don't delete the images off aws s3
 
 # Continuous Deployment
 

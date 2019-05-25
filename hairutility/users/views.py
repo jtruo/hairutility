@@ -12,11 +12,8 @@ from rest_framework.permissions import AllowAny, IsAdminUser
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-class UserViewSet(mixins.RetrieveModelMixin,
-                  mixins.CreateModelMixin,
-                  mixins.UpdateModelMixin,
-                  mixins.ListModelMixin,
-                  viewsets.GenericViewSet):
+class UserViewSet(viewsets.ModelViewSet):
+
     """
     Creates, updates and retrives user info
     """

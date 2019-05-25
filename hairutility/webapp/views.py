@@ -160,3 +160,7 @@ class FAQView(TemplateView):
 @method_decorator(BasicAuthDecorator, name='dispatch')
 class WorkInProgressView(TemplateView):
     template_name = 'wip.html'
+
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'privacy-policy.html'

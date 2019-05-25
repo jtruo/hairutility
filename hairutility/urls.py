@@ -5,7 +5,7 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 
 from .users.views import UserViewSet, HairProfileViewSet, CompanyViewSet, ObtainAuthTokenView
-from .webapp.views import HomePageView, AboutUsPageView, FAQView, WorkInProgressView, single_hair_profile, HairProfilesView
+from .webapp.views import HomePageView, AboutUsPageView, FAQView, WorkInProgressView, single_hair_profile, HairProfilesView, PrivacyPolicyView
 # from .webapp.views import AboutUsPageView, FAQView, WorkInProgressView
 
 router = DefaultRouter()
@@ -30,6 +30,7 @@ urlpatterns = [
     path('single-hair-profile/<id>/', single_hair_profile, name='single-hair-profile'),
 
     path('faq/', FAQView.as_view(), name='faq'),
-    path('salons', WorkInProgressView.as_view(), name='salons'),
+    path('salons/', WorkInProgressView.as_view(), name='salons'),
+    path('privacy-policy/', PrivacyPolicyView.as_view(), name='privacy-policy')
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
