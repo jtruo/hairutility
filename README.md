@@ -1,6 +1,8 @@
 # hairutility-web
 
-HairUtility is a side project website I made to help people get better haircuts. In order to help people receive better haircuts, I created hair profiles to store more information about haircuts onto the website/apps. After receiving lots of feedback from customer interviews, I decided that I would not invest more time into this project. The greatest obstacle was that people have different hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested much of my time rapidly developing the full-stack django website.
+HairUtility is a side project website I made to help people get better haircuts. In order to help people receive better haircuts, I created hair profiles to store more information about haircuts onto the website/apps. After receiving lots of feedback from customer interviews, I decided that I would not invest more time into this project. 
+
+The greatest obstacle was the differenting hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested much of my time rapidly developing the full-stack django website.
 
 # Prerequisites
 
