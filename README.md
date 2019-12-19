@@ -4,6 +4,8 @@ HairUtility is a side project website I made to help people get better haircuts.
 
 The greatest obstacle was the differenting hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested much of my time rapidly developing the full-stack django website.
 
+After participating in business competitions, collecting feedback from salons, interviewing ~60 students at Alpha Chi Omega, I decided to shelve the project. 
+
 # Prerequisites
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
