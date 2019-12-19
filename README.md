@@ -1,6 +1,5 @@
 # hairutility-web
 
-[![Build Status](https://travis-ci.org/jtruo/hairutility-web.svg?branch=master)](https://travis-ci.org/jtruo/hairutility-web)
 [![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
 
 Django api and web. Check out the project's [documentation](http://jtruo.github.io/hairutility-web/).
@@ -8,7 +7,6 @@ Django api and web. Check out the project's [documentation](http://jtruo.github.
 # Prerequisites
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
-- [Travis CLI](http://blog.travis-ci.com/2013-01-14-new-client/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
 
 # Local Development
