@@ -6,6 +6,19 @@ The greatest obstacle was the differenting hair types/shapes that make it diffic
 
 After interviewing ~60 students at Alpha Chi Omega, I decided to shelve the project because I lost interest in haircuts and the app would only be helpful to a small niche of people.
 
+# Third-Party Libraries Used
+
+ImagePicker (multi-select for images)
+AWSCore (accessing aws services)
+AWSS3 (uploading images to awss3)
+Alamofire (easy-to-read api requests)
+KeychainAccess (storing secure data)
+lottie-ios (json animations)
+Kingfisher (caching images)
+IQKeyboardManagerSwift (better keyboard UX)
+Lightbox (image viewer)
+Disk (extremely easy local storage access)
+
 # Prerequisites
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
