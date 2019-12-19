@@ -95,8 +95,8 @@ git push origin master:qa && \
 git push origin master
 
 Step: 2
-heroku container:login
-heroku container:push web
+heroku container:login && \
+heroku container:push web && \
 heroku container:release web --app hairutility-qa
 
 To make database migrations (almost everytime you change your model):
