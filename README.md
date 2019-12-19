@@ -1,14 +1,14 @@
 # hairutility-web
 
-[![Build Status](https://travis-ci.org/jtruo/hairutility-web.svg?branch=master)](https://travis-ci.org/jtruo/hairutility-web)
-[![Built with](https://img.shields.io/badge/Built_with-Cookiecutter_Rest-F7B633.svg)](https://github.com/agconti/cookiecutter-django-rest)
+HairUtility is a side project website I made to help people get better haircuts. In order to help people receive better haircuts, I created hair profiles to store more information about haircuts onto the website/apps. After receiving lots of feedback from customer interviews, I decided that I would not invest more time into this project. 
 
-Django api and web. Check out the project's [documentation](http://jtruo.github.io/hairutility-web/).
+The greatest obstacle was the differenting hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested much of my time rapidly developing the full-stack django website.
+
+After participating in business competitions, collecting feedback from salons, interviewing ~60 students at Alpha Chi Omega, I decided to shelve the project. 
 
 # Prerequisites
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
-- [Travis CLI](http://blog.travis-ci.com/2013-01-14-new-client/)
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
 
 # Local Development
@@ -46,20 +46,16 @@ AWS S3 Local + Online
 
 ENV vars for Local. Local dev must provide a .env file with AWS keys and S3 for local dev
 
-# Important Issues
+# Known Issues
 
-!!! If there is no hair profile image in AWS3 for single-hair-profile but the image key is in db, the website will crash
+If there is no hair profile image in AWS3 for single-hair-profile but the image key is in db, the website will crash
 
-# Continuous Deployment
-
-Deployment is automated via Travis. When builds pass on the master or qa branch, Travis will deploy that branch to Heroku. Follow these steps to enable this feature.
-
+# Personal Notes
 
 AWS ECS
 
 View push commands in repo
 Run task
-
 
 Initialize the production server:
 
