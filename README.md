@@ -86,17 +86,11 @@ heroku create hairutility-qa --remote qa && \
         --app hairutility-qa
 
 
-Securely add your Heroku credentials to Travis so that it can automatically deploy your changes:
-
-
-travis encrypt HEROKU_AUTH_TOKEN="$(heroku auth:token)" --add
-
 
 Commit your changes and push to master and qa to trigger your first deploys:
 
 Step 1:
 
-git commit -a -m "ci(travis): add Heroku credentials" && \
 git push origin master:qa && \
 git push origin master
 
@@ -118,6 +112,4 @@ Port already allocated error = restart docker application
 PostgreSQL/RDS
 
 Connect by:
-
-psql --host=hairutility-postgresql.cwv7chbb2fjl.us-east-2.rds.amazonaws.com --port=5432 --username=jtruo --password --dbname=postgres
 
