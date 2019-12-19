@@ -29,7 +29,7 @@ s3Client = boto3.client('s3', region_name='us-east-2')
 bucket = s3.Bucket(settings.AWS_STORAGE_BUCKET_NAME)
 
 
-@method_decorator(BasicAuthDecorator, name='dispatch')
+# @method_decorator(BasicAuthDecorator, name='dispatch')
 class HomePageView(TemplateView):
     template_name = 'index.html'
 
@@ -51,12 +51,12 @@ class HomePageView(TemplateView):
         return context
 
 
-@method_decorator(BasicAuthDecorator, name='dispatch')
+# @method_decorator(BasicAuthDecorator, name='dispatch')
 class AboutUsPageView(TemplateView):
     template_name = 'about-us.html'
 
 
-@method_decorator(BasicAuthDecorator, name='dispatch')
+# @method_decorator(BasicAuthDecorator, name='dispatch')
 class HairProfilesView(TemplateView):
     template_name = 'hair-profiles.html'
 
@@ -149,11 +149,11 @@ def single_hair_profile(request, thumbnail_key=''):
 
 #         return context
 
-@method_decorator(BasicAuthDecorator, name='dispatch')
+# @method_decorator(BasicAuthDecorator, name='dispatch')
 class FAQView(TemplateView):
     template_name = 'faq.html'
 
 
-@method_decorator(BasicAuthDecorator, name='dispatch')
+# @method_decorator(BasicAuthDecorator, name='dispatch')
 class WorkInProgressView(TemplateView):
     template_name = 'wip.html'
