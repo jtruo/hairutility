@@ -8,7 +8,7 @@ After interviewing ~60 students at Alpha Chi Omega, I decided to shelve the proj
 
 # Third-Party Libraries Used
 
-ImagePicker (multi-select for images)
+ImagePicker (multi-select for images) && \
 AWSCore (accessing aws services)
 AWSS3 (uploading images to awss3)
 Alamofire (easy-to-read api requests)
