@@ -5,7 +5,7 @@ HairUtility is a side project website I made to help people get better haircuts.
 
 The greatest obstacle was the differenting hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested most of my time rapidly developing the full-stack django website and doing customer interviews.
 
-After interviewing ~60 students at Alpha Chi Omega, I decided to shelve the project because I lost interest in haircuts and the app would only be helpful to a small niche of people.
+After interviewing ~60 students at Alpha Chi Omega at Purdue, I decided to shelve the project because I lost interest in haircuts and the app would only be helpful to a small niche of people.
 
 https://www.hairutility.com/
 
@@ -13,6 +13,11 @@ https://www.hairutility.com/
 
 - [Docker](https://docs.docker.com/docker-for-mac/install/)  
 - [Heroku Toolbelt](https://toolbelt.heroku.com/)
+
+# Uploading/Retrieving Images at Scale
+
+Image Implementation:
+Uploading images are based off of a common practice. Images are uploaded from the users's phones into an AWS S3 bucket. The path to the image is stored in the Django/Heroku PostgreSQL database instead of the full link to the S3 bucket. This saves a small chunk of space with the image sizing. When retrieving images, users don't download and store the images directly. The database keeps track of what images users have "Liked" and retrieves them quickly. CloudFront capability could be added to improve image loading times/caching. 
 
 # Local Development
 
