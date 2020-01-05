@@ -1,11 +1,12 @@
 # hairutility-web
 
-
 HairUtility is a side project website I made to help people get better haircuts. In order to help people receive better haircuts, I created hair profiles to store more information about haircuts onto the website/apps. The UI/UX design was based off of a bootstrap template that I modified.
 
 The greatest obstacle was the differenting hair types/shapes that make it difficult to replicate another person's haircut. There is hardly any documentation on the code which is bad practice. I invested most of my time rapidly developing the full-stack django website and doing customer interviews.
 
 After interviewing ~60 students at Alpha Chi Omega at Purdue, I decided to shelve the project because I lost interest in haircuts and the app would only be helpful to a small niche of people.
+
+I attempted tried to implement some unit-tests, but I ended up disabling the tests so that I could develop faster. I used a hobby/qa server on Heroku to test my implementations on the webserver. 
 
 https://www.hairutility.com/
 
